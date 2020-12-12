@@ -1,6 +1,6 @@
 # thesis_app_flutter
 
-A new Flutter project.
+TheSiS App Flutter Version
 
 ## Getting Started
 
