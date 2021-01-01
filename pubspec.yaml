@@ -1,5 +1,5 @@
-name: thesis_app_flutter
-description: TheSiS App Flutter Version
+name: thesis_app
+description: TheSiS App Flutter UI
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -11,11 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.0
+  flutter_svg: ^0.19.0
+  provider: ^4.3.2 # for State management
+
 dev_dependencies:
   flutter_launcher_name: "^0.0.1"
-  flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_icons: "^0.8.1"
   flutter_test:
     sdk: flutter
 
@@ -25,7 +27,21 @@ flutter_launcher_name:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/ic_logo.png"
+  image_path: "assets/icons/ic_logo.png"
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/
+
+fonts:
+    - family: Proxima
+      fonts:
+        - asset: assets/fonts/Proxima.otf
+        - asset: assets/fonts/Proxima-Italic.otf
+          style: italic
+        - asset: assets/fonts/Proxima-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Proxima-Light.otf
+          weight: 300
