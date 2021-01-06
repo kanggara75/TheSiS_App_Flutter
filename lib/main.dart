@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/routes.dart';
-import 'package:thesis_app/theme.dart';
-import 'package:thesis_app/screen/intro_page/intro_page.dart';
-// import 'package:thesis_app/screens/profile/profile_screen.dart';
+import 'package:flutter/services.dart';
+import './config/routes.dart';
+import './config/theme.dart';
+import './controllers/Intro.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,13 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, //Disable Debud banner on right top app
       title: 'TheSiS App',
-      theme: theme(),
-      // home: SplashScreen(),
-      // We use routeName so that we dont need to remember the name
-      initialRoute: SplashScreen.routeName,
-      routes: routes,
+      theme: theme(), //Theme for this App
+      initialRoute: IntroScreen.routeName, //Redirect to Intro Screen
+      routes: routes, //Setup Routes from routers.dart
     );
   }
 }

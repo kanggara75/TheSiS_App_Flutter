@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/size_config.dart';
+import 'package:thesis_app/config/size_config.dart';
+
+const apiLogin = "https://thesis.kanggara.net/api/login";
 
 const kPrimaryColor = Color(0xFF06b3fa);
 const kPrimaryLightColor = Color(0xFFFFECDF);

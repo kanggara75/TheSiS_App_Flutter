@@ -1,3 +1,5 @@
+// import 'dart:js';
+
 import 'package:flutter/widgets.dart';
 // import 'package:thesis_app/screens/cart/cart_screen.dart';
 // import 'package:thesis_app/screens/complete_profile/complete_profile_screen.dart';
@@ -8,16 +10,17 @@ import 'package:flutter/widgets.dart';
 // import 'package:thesis_app/screens/otp/otp_screen.dart';
 // import 'package:thesis_app/screens/profile/profile_screen.dart';
 // import 'package:thesis_app/screens/sign_in/sign_in_screen.dart';
-import 'package:thesis_app/screen/intro_page/intro_page.dart';
-import 'package:thesis_app/screen/login_page/login_page.dart';
+import 'package:thesis_app/controllers/Intro.dart'; //Intro
+// import 'package:thesis_app/controllers/Login.dart'; //Login
+// import 'package:thesis_app/screen/login_success/login_success_page.dart'; //Login
 
 // import 'screens/sign_up/sign_up_screen.dart';
 
 // We use name route
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
-  SplashScreen.routeName: (context) => SplashScreen(),
-  SignInScreen.routeName: (context) => SignInScreen(),
+  IntroScreen.routeName: (context) => IntroScreen(), //Intro_Screen
+  // LoginScreen.routeName: (context) => LoginScreen(), //Login_Screen
   // ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   // LoginSuccessScreen.routeName: (context) => LoginSuccessScreen(),
   // SignUpScreen.routeName: (context) => SignUpScreen(),

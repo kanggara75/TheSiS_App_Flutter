@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/constants.dart';
-import 'package:thesis_app/screen/login_page/login_page.dart';
-import 'package:thesis_app/size_config.dart';
-
-// This is the best practice
-import 'package:thesis_app/screen/intro_page/components/intro_content.dart';
-import 'package:thesis_app/components/default_button.dart';
+import 'package:thesis_app/config/constants.dart';
+import 'package:thesis_app/config/size_config.dart';
+import 'package:thesis_app/helper/default_button.dart';
+import 'intro_content.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -70,7 +67,7 @@ class _BodyState extends State<Body> {
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
+                        Navigator.pushReplacementNamed(context, null);
                       },
                     ),
                     Spacer(),
