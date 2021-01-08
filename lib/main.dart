@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import './config/routes.dart';
-import './config/theme.dart';
-import './controllers/Intro.dart';
+import 'package:thesis_app/config/routes.dart';
+import 'package:thesis_app/config/theme.dart';
+import 'package:thesis_app/controllers/Intro.dart';
 
 void main() => runApp(MyApp());
 

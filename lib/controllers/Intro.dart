@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/views/intro/body.dart';
+import 'package:thesis_app/views/intro/index.dart';
 import 'package:thesis_app/config/size_config.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -8,7 +8,7 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Body(),
+      body: IntroBody(),
     );
   }
 }

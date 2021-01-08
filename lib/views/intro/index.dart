@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/config/size_config.dart';
+import 'package:thesis_app/controllers/Login.dart';
 import 'package:thesis_app/helper/default_button.dart';
-import 'intro_content.dart';
+import 'intro.dart';
 
-class Body extends StatefulWidget {
+class IntroBody extends StatefulWidget {
   @override
-  _BodyState createState() => _BodyState();
+  _IntroBodyState createState() => _IntroBodyState();
 }
 
-class _BodyState extends State<Body> {
+class _IntroBodyState extends State<IntroBody> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
@@ -67,7 +68,8 @@ class _BodyState extends State<Body> {
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushReplacementNamed(context, null);
+                        Navigator.pushReplacementNamed(
+                            context, LoginScreen.routeName);
                       },
                     ),
                     Spacer(),
