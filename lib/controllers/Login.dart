@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/config/size_config.dart';
@@ -36,13 +37,20 @@ class LoginSuccessScreen extends StatelessWidget {
 }
 
 abstract class LoginController extends State<Login> {
-  TextEditingController user = new TextEditingController();
-  TextEditingController pass = new TextEditingController();
-
+  var status;
+  String msg = '', pmsg, emsg;
   bool _secureText = true, remember = true;
   final List<String> errors = [];
 
-  String msg = '', pmsg, emsg;
+  TextEditingController user = new TextEditingController();
+  TextEditingController pass = new TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    getPref();
+  }
+
   showHide() {
     setState(() {
       _secureText = !_secureText;
@@ -88,6 +96,7 @@ abstract class LoginController extends State<Login> {
         msg = "Error";
       });
     } else {
+      savePref(status);
       if (status == 2) {
         Navigator.pushReplacementNamed(context, UserScreen.routeName);
       } else if (status == 1) {
@@ -98,6 +107,26 @@ abstract class LoginController extends State<Login> {
         });
       }
     }
+  }
+
+  savePref(status) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      preferences.setInt("status", status);
+      // preferences.commit();
+    });
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      status = preferences.getInt("status");
+      if (status == 2) {
+        Navigator.pushReplacementNamed(context, UserScreen.routeName);
+      } else if (status == 1) {
+        Navigator.pushReplacementNamed(context, AdminScreen.routeName);
+      }
+    });
   }
 
   //Config for Username section

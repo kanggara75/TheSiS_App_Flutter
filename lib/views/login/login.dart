@@ -4,7 +4,6 @@ import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/config/constants.dart';
 
 import 'package:thesis_app/controllers/Login.dart';
-import 'package:thesis_app/controllers/Forgot.dart';
 import 'package:thesis_app/helper/keyboard.dart';
 
 import 'package:thesis_app/helper/default_button.dart';
