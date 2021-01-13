@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/routes.dart';
 import 'package:thesis_app/config/theme.dart';
-import 'package:thesis_app/controllers/Intro.dart';
+import 'package:thesis_app/controllers/Splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, //Disable Debud banner on right top app
       title: 'TheSiS App',
       theme: theme(), //Theme for this App
-      initialRoute: IntroScreen.routeName, //Redirect to Intro Screen
+      initialRoute: SplashScreen.routeName, //Redirect to Intro Screen
       routes: routes, //Setup Routes from routers.dart
     );
   }
