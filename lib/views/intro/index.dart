@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/config/size_config.dart';
-import 'package:thesis_app/controllers/Login.dart';
+import 'package:thesis_app/controllers/Intro.dart';
 import 'package:thesis_app/helper/default_button.dart';
 import 'intro.dart';
 
@@ -10,30 +10,14 @@ class IntroBody extends StatefulWidget {
   _IntroBodyState createState() => _IntroBodyState();
 }
 
-class _IntroBodyState extends State<IntroBody> {
-  int currentPage = 0;
-  List<Map<String, String>> splashData = [
-    {
-      "text": "Welcome to TheSiS, Let’s make your vehicle safer!",
-      "image": "assets/images/splash_1.png"
-    },
-    {
-      "text": "We help people to secure your vehicle \naround Riau Province",
-      "image": "assets/images/splash_2.png"
-    },
-    {
-      "text":
-          "We show the easy way to tracking your vehicle. \nJust stay at home with us",
-      "image": "assets/images/splash_3.png"
-    },
-  ];
+class _IntroBodyState extends IntroController {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
         child: Column(
-          children: <Widget>[
+          children: [
             Expanded(
               flex: 3,
               child: PageView.builder(
@@ -68,8 +52,7 @@ class _IntroBodyState extends State<IntroBody> {
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushReplacementNamed(
-                            context, LoginScreen.routeName);
+                        next();
                       },
                     ),
                     Spacer(),
