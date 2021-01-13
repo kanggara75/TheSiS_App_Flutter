@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/size_config.dart';
 
-const apiLogin = "https://thesis.kanggara.net/api/login";
-
 const kPrimaryColor = Color(0xFF06b3fa);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
@@ -49,4 +47,9 @@ OutlineInputBorder outlineInputBorder() {
     borderRadius: BorderRadius.circular(getProportionateScreenWidth(15)),
     borderSide: BorderSide(color: kTextColor),
   );
+}
+
+class BaseUrl {
+  static String login = "https://thesis.kanggara.net/api/login";
+  static String register = "";
 }
