@@ -37,7 +37,7 @@ class LoginSuccessScreen extends StatelessWidget {
 }
 
 abstract class LoginController extends State<Login> {
-  var status;
+  var status, intro;
   String msg = '', pmsg, emsg;
   bool _secureText = true, remember = true;
   final List<String> errors = [];
@@ -82,21 +82,23 @@ abstract class LoginController extends State<Login> {
 
   // ignore: missing_return
   Future<List> login() async {
-    final response = await http.post(apiLogin, body: {
+    final response = await http.post(BaseUrl.login, body: {
       "email": user.text,
       "password": pass.text,
     });
 
+    int intro = 1;
     final data = json.decode(response.body);
     int status = data['value'];
     String pesan = data['messege'];
     print(data);
+    print(intro);
+    remember ? savePref(status, pesan, intro) : savePref(null, null, null);
     if (data.length == 0) {
       setState(() {
         msg = "Error";
       });
     } else {
-      savePref(status);
       if (status == 2) {
         Navigator.pushReplacementNamed(context, UserScreen.routeName);
       } else if (status == 1) {
@@ -109,10 +111,12 @@ abstract class LoginController extends State<Login> {
     }
   }
 
-  savePref(status) async {
+  savePref(status, pesan, intro) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("status", status);
+      preferences.setInt("intro", intro);
+      preferences.setString("pesan", pesan);
       // preferences.commit();
     });
   }

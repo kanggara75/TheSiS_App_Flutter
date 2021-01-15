@@ -71,8 +71,8 @@ class _LoginState extends LoginController {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 KeyboardUtil.hideKeyboard(context);
+                cek();
               }
-              cek();
             },
           ),
           SizedBox(
