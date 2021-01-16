@@ -1,45 +1,33 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:here_sdk/mapview.dart';
-import 'package:here_sdk/core.dart';
+import 'package:thesis_app/controllers/Map.dart';
 
-class MapPage extends StatelessWidget {
+class MapPage extends StatefulWidget {
+  @override
+  _MapPageState createState() => _MapPageState();
+}
+
+class _MapPageState extends MapController {
   @override
   Widget build(BuildContext context) {
-    return HereMap(
-      onMapCreated: onMapCreated,
+    return Stack(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: HereMap(onMapCreated: onMapCreated),
+        ),
+        Align(
+          alignment: Alignment(0.87, 0.92),
+          child: FloatingActionButton(
+            backgroundColor: Colors.amber,
+            child: Icon(Icons.alt_route),
+            onPressed: () {
+              clear();
+            },
+          ),
+        )
+      ],
     );
-  }
-
-  Future<void> drawMarker(HereMapController hereMapController, int drawOrder,
-      GeoCoordinates geoCoordinates) async {
-    ByteData fileData = await rootBundle.load("assets/icons/marker.png");
-    Uint8List pixelData = fileData.buffer.asUint8List();
-    MapImage mapImage =
-        MapImage.withPixelDataAndImageFormat(pixelData, ImageFormat.png);
-    MapMarker mapMarker = MapMarker(geoCoordinates, mapImage);
-    mapMarker.drawOrder = drawOrder;
-    hereMapController.mapScene.addMapMarker(mapMarker);
-  }
-
-  void onMapCreated(HereMapController hereMapController) {
-    hereMapController.mapScene.loadSceneForMapScheme(
-      MapScheme.normalDay,
-      (error) {
-        if (error != null) {
-          print("Error" + error.toString());
-          return;
-        }
-      },
-    );
-
-    drawMarker(hereMapController, 0, GeoCoordinates(0.4706872, 101.3561268));
-
-    double distanceInMeter = 800;
-
-    hereMapController.camera.lookAtPointWithDistance(
-        GeoCoordinates(0.4706872, 101.3561268), distanceInMeter);
   }
 }
