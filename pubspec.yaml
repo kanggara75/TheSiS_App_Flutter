@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  here_sdk:
+    path: plugins/here_sdk
   flutter_svg: ^0.19.0
   shared_preferences: ^0.5.12+4
   curved_navigation_bar: ^0.3.7

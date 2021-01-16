@@ -9,6 +9,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="TheSiS App"
         android:icon="@mipmap/launcher_icon">
+        
+        <meta-data android:name="com.here.sdk.access_key_id" android:value="XXhCWZZrx6RWNSRrkWX1iA"/>
+        <meta-data android:name="com.here.sdk.access_key_secret" android:value="ks6lz-b84AcfsqXA70-N4BGB6NB8kqPHMHBURedmc_A4DivCSDw4ThpqFiVFcmn0KzsVaVF2zU3qj1GVOE1K7A"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

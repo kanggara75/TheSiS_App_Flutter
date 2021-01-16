@@ -41,5 +41,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>HERECredentials</key>
+    <dict>
+			<!-- Here Map -->
+			<key>AccessKeyId</key>
+			<string>XXhCWZZrx6RWNSRrkWX1iA</string>
+			<key>AccessKeySecret</key>
+			<string>ks6lz-b84AcfsqXA70-N4BGB6NB8kqPHMHBURedmc_A4DivCSDw4ThpqFiVFcmn0KzsVaVF2zU3qj1GVOE1K7A</string>
+    </dict>
+  <key>io.flutter.embedded_views_preview</key>
+  <true/>
 </dict>
 </plist>
