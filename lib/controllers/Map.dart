@@ -4,6 +4,7 @@ import 'package:here_sdk/mapview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:here_sdk/routing.dart';
+import 'package:thesis_app/helper/location_services.dart';
 import 'package:thesis_app/views/map/index.dart';
 import 'package:thesis_app/config/size_config.dart';
 
@@ -43,7 +44,7 @@ abstract class MapController extends State<MapPage> {
 
     drawRoute(
       GeoCoordinates(0.471260, 101.363860),
-      GeoCoordinates(1.5006872, 101.8561268),
+      GeoCoordinates(0.4705807, 101.3623994),
       hereMapController,
     );
 
@@ -127,5 +128,27 @@ abstract class MapController extends State<MapPage> {
         }
       },
     );
+  }
+}
+
+abstract class UserLocationNowController extends State<UserLocationNow> {
+  LocationService locationService = LocationService();
+  double lat = 0, lon = 0;
+
+  @override
+  void initState() {
+    locationService.locationStream.listen((userLocation) {
+      setState(() {
+        lat = userLocation.lat;
+        lon = userLocation.lon;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    locationService.dispose();
+    super.dispose();
   }
 }

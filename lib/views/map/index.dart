@@ -31,3 +31,40 @@ class _MapPageState extends MapController {
     );
   }
 }
+
+class UserLocationNow extends StatefulWidget {
+  @override
+  _UserLocationNowState createState() => _UserLocationNowState();
+}
+
+class _UserLocationNowState extends UserLocationNowController {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.lightBlue,
+      appBar: AppBar(
+        title: Text("User Location"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Longitude"),
+            Text(
+              '$lon',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text("Latitude"),
+            Text(
+              '$lat',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

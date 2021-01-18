@@ -23,6 +23,7 @@ dependencies:
   # provider: ^4.3.2 # for State management
   http: ^0.12.2
   # flutter_bloc: ^6.1.1
+  location: ^3.2.1
 
 dev_dependencies:
   flutter_launcher_name: "^0.0.1"
