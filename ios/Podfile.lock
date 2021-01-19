@@ -2,12 +2,15 @@ PODS:
   - Flutter (1.0.0)
   - here_sdk (4.6.0.0.4015.release):
     - Flutter
+  - location (0.0.1):
+    - Flutter
   - shared_preferences (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - here_sdk (from `.symlinks/plugins/here_sdk/ios`)
+  - location (from `.symlinks/plugins/location/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 EXTERNAL SOURCES:
@@ -15,12 +18,15 @@ EXTERNAL SOURCES:
     :path: Flutter
   here_sdk:
     :path: ".symlinks/plugins/here_sdk/ios"
+  location:
+    :path: ".symlinks/plugins/location/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   here_sdk: c26612f7d909f16f3d3f3ab14915cdc31da411d9
+  location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
 
 PODFILE CHECKSUM: 535c6ac7daa6dac8674493003e22db121e9167a1

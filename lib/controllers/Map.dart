@@ -4,9 +4,10 @@ import 'package:here_sdk/mapview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:here_sdk/routing.dart';
-import 'package:thesis_app/helper/location_services.dart';
 import 'package:thesis_app/views/map/index.dart';
 import 'package:thesis_app/config/size_config.dart';
+import 'package:thesis_app/helper/location_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MapScreen extends StatelessWidget {
   static String routeName = "/dashboard";
@@ -20,10 +21,45 @@ class MapScreen extends StatelessWidget {
 }
 
 abstract class MapController extends State<MapPage> {
+  LocationService locationService = LocationService();
+  double lat, lon;
+
+  @override
+  void initState() {
+    locationService.locationStream.listen((userLocation) {
+      setState(() {
+        lat = userLocation.lat;
+        lon = userLocation.lon;
+        savePref(lon, lat);
+      });
+    });
+    super.initState();
+    getPref();
+  }
+
   @override
   void dispose() {
+    locationService.dispose();
     _controller?.finalize();
     super.dispose();
+  }
+
+  savePref(lon, lat) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      preferences.setDouble("lon", lon);
+      preferences.setDouble("lat", lat);
+    });
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(
+      () {
+        lon = preferences.getDouble("lon");
+        lat = preferences.getDouble("lat");
+      },
+    );
   }
 
   MapPolyline _mapPolyline;
@@ -43,7 +79,7 @@ abstract class MapController extends State<MapPage> {
     );
 
     drawRoute(
-      GeoCoordinates(0.471260, 101.363860),
+      GeoCoordinates(lat, lon),
       GeoCoordinates(0.4705807, 101.3623994),
       hereMapController,
     );
@@ -51,13 +87,13 @@ abstract class MapController extends State<MapPage> {
     drawMarker(
       hereMapController,
       0,
-      GeoCoordinates(0.471260, 101.363860),
+      GeoCoordinates(lat, lon),
     );
 
     double distanceInMeter = 800;
 
     hereMapController.camera.lookAtPointWithDistance(
-      GeoCoordinates(0.471260, 101.363860),
+      GeoCoordinates(lat, lon),
       distanceInMeter,
     );
   }
@@ -133,7 +169,7 @@ abstract class MapController extends State<MapPage> {
 
 abstract class UserLocationNowController extends State<UserLocationNow> {
   LocationService locationService = LocationService();
-  double lat = 0, lon = 0;
+  double lat, lon;
 
   @override
   void initState() {
@@ -141,14 +177,34 @@ abstract class UserLocationNowController extends State<UserLocationNow> {
       setState(() {
         lat = userLocation.lat;
         lon = userLocation.lon;
+        savePref(lon, lat);
       });
     });
     super.initState();
+    getPref();
   }
 
   @override
   void dispose() {
     locationService.dispose();
     super.dispose();
+  }
+
+  savePref(lon, lat) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      preferences.setDouble("lon", lon);
+      preferences.setDouble("lat", lat);
+    });
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(
+      () {
+        lon = preferences.getDouble("lon");
+        lat = preferences.getDouble("lat");
+      },
+    );
   }
 }

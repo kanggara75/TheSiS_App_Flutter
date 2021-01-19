@@ -41,6 +41,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>TheSiS App Request location access!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>TheSiS App Request location access!</string>
 	<key>HERECredentials</key>
     <dict>
 			<!-- Here Map -->
