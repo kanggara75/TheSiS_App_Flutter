@@ -44,12 +44,6 @@ abstract class LoginController extends State<Login> {
   TextEditingController user = new TextEditingController();
   TextEditingController pass = new TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    getPref();
-  }
-
   showHide() {
     setState(() {
       _secureText = !_secureText;
