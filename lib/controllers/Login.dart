@@ -80,13 +80,20 @@ abstract class LoginController extends State<Login> {
       "password": pass.text,
     });
 
-    int intro = 1;
     final data = json.decode(response.body);
+    int intro = 1;
     int status = data['value'];
+    int joindate = data['date_created'];
+    String name = data['name'];
+    String email = data['email'];
+    String image = data['image'];
     String pesan = data['messege'];
+    String password = data['password'];
     print(data);
     print(intro);
-    remember ? savePref(status, pesan, intro) : savePref(null, null, null);
+    remember
+        ? savePref(intro, status, joindate, name, email, image, pesan, password)
+        : savePref(null, null, null, null, null, null, null, null);
     if (data.length == 0) {
       setState(() {
         msg = "Error";
@@ -104,25 +111,17 @@ abstract class LoginController extends State<Login> {
     }
   }
 
-  savePref(status, pesan, intro) async {
+  savePref(intro, status, joindate, name, email, image, pesan, password) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      preferences.setInt("status", status);
       preferences.setInt("intro", intro);
+      preferences.setInt("status", status);
+      preferences.setInt("joindate", joindate);
+      preferences.setString("name", name);
       preferences.setString("pesan", pesan);
-      // preferences.commit();
-    });
-  }
-
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      status = preferences.getInt("status");
-      if (status == 2) {
-        Navigator.pushReplacementNamed(context, UserScreen.routeName);
-      } else if (status == 1) {
-        Navigator.pushReplacementNamed(context, AdminScreen.routeName);
-      }
+      preferences.setString("email", email);
+      preferences.setString("image", image);
+      preferences.setString("password", password);
     });
   }
 
