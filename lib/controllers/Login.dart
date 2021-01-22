@@ -37,7 +37,6 @@ class LoginSuccessScreen extends StatelessWidget {
 }
 
 abstract class LoginController extends State<Login> {
-  var status, intro;
   String msg = '', pmsg, emsg;
   bool _secureText = true, remember = true;
   final List<String> errors = [];
