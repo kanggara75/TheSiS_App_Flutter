@@ -37,6 +37,8 @@ abstract class SplashController extends State<SplashBody> {
           Navigator.pushReplacementNamed(context, UserScreen.routeName);
         } else if (status == 1) {
           Navigator.pushReplacementNamed(context, AdminScreen.routeName);
+        } else {
+          Navigator.pushReplacementNamed(context, IntroScreen.routeName);
         }
       } else {
         Navigator.pushReplacementNamed(context, IntroScreen.routeName);
