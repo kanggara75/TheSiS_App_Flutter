@@ -83,12 +83,12 @@ abstract class LoginController extends State<Login> {
     final data = json.decode(response.body);
     int intro = 1;
     int status = data['value'];
-    int joindate = data['date_created'];
     String name = data['name'];
     String email = data['email'];
     String image = data['image'];
     String pesan = data['messege'];
     String password = data['password'];
+    String joindate = data['date_created'];
     print(data);
     print(intro);
     remember
@@ -116,12 +116,12 @@ abstract class LoginController extends State<Login> {
     setState(() {
       preferences.setInt("intro", intro);
       preferences.setInt("status", status);
-      preferences.setInt("joindate", joindate);
       preferences.setString("name", name);
       preferences.setString("pesan", pesan);
       preferences.setString("email", email);
       preferences.setString("image", image);
       preferences.setString("password", password);
+      preferences.setString("joindate", joindate);
     });
   }
 
