@@ -9,9 +9,8 @@ import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/login/index.dart'; //LoginBody
 import 'package:thesis_app/views/login/login.dart';
 
-import 'package:thesis_app/views/login/login_success.dart';
-import 'package:thesis_app/controllers/Admin.dart';
 import 'package:thesis_app/controllers/User.dart';
+import 'package:thesis_app/controllers/Navbar.dart';
 import 'package:thesis_app/controllers/Forgot.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,17 +20,6 @@ class LoginScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       body: LoginBody(),
-    );
-  }
-}
-
-class LoginSuccessScreen extends StatelessWidget {
-  static String routeName = "/loginSuccess";
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return Scaffold(
-      body: LoginSuccess(),
     );
   }
 }

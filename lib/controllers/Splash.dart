@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/controllers/User.dart';
 import 'package:thesis_app/controllers/Intro.dart';
-import 'package:thesis_app/controllers/Admin.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/splash/index.dart';
+import 'package:thesis_app/controllers/Navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {

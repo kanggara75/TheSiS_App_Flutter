@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:thesis_app/controllers/Splash.dart';
 import 'package:thesis_app/controllers/Intro.dart'; //Intro
 import 'package:thesis_app/controllers/Login.dart';
-import 'package:thesis_app/controllers/Admin.dart';
-import 'package:thesis_app/controllers/User.dart';
+import 'package:thesis_app/controllers/Navbar.dart';
 import 'package:thesis_app/controllers/Forgot.dart';
 
 // We use name route
