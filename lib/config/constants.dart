@@ -50,7 +50,12 @@ OutlineInputBorder outlineInputBorder() {
 }
 
 class BaseUrl {
-  static String login = "https://thesis.kanggara.net/api/login";
-  static var profileImage = "https://thesis.kanggara.net/assets/img/profile/";
-  static String register = "";
+  // static String baseUrl = "https://thesis.kanggara.net/";
+  // static String baseUrl = "http://200.0.0.2/thesis/";
+  static String baseUrl = "http://192.168.43.15/thesis/";
+  static String login = baseUrl + "api/login";
+  static String register = baseUrl + "api/register";
+  static String kontrol = baseUrl + "api/getAllKontrol";
+  static String updateKontrol = baseUrl + "api/updateKontrol";
+  static String profileImage = baseUrl + "assets/img/profile/";
 }

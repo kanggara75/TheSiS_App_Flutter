@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thesis_app/controllers/Control.dart';
 import 'package:thesis_app/controllers/Map.dart';
 import 'package:thesis_app/views/map/index.dart';
 import 'package:thesis_app/controllers/Admin.dart';
@@ -72,7 +73,7 @@ abstract class UserNavBarController extends State<UserNavBar> {
 
   Widget showPage = new UserProfile(); //TODO Halaman utama user
 
-  final UserProfile _userPage = new UserProfile(); //TODO Halaman utama user
+  final ControlScreen _controlScreen = new ControlScreen();
   final MapScreen _mapScreen = new MapScreen();
   final UserProfile _userProfile = new UserProfile();
   final UserLocationNow _locationNow = new UserLocationNow();
@@ -81,7 +82,7 @@ abstract class UserNavBarController extends State<UserNavBar> {
   pageChooser(int page) {
     switch (page) {
       case 0:
-        return _userPage;
+        return _controlScreen;
         break;
       case 1:
         return _dashboardScreen;

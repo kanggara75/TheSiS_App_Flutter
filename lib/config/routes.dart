@@ -5,6 +5,7 @@ import 'package:thesis_app/controllers/Intro.dart'; //Intro
 import 'package:thesis_app/controllers/Login.dart';
 import 'package:thesis_app/controllers/Navbar.dart';
 import 'package:thesis_app/controllers/Forgot.dart';
+import 'package:thesis_app/controllers/Control.dart';
 
 // We use name route
 // All our routes will be available here
@@ -15,4 +16,5 @@ final Map<String, WidgetBuilder> routes = {
   UserScreen.routeName: (context) => UserScreen(),
   AdminScreen.routeName: (context) => AdminScreen(),
   ForgotScreen.routeName: (context) => ForgotScreen(),
+  ControlScreen.routeName: (context) => ControlScreen(),
 };
