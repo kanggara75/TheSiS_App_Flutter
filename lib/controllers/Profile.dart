@@ -47,9 +47,14 @@ abstract class ProfileController extends State<ProfileBody> {
   signOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      preferences.setInt("status", null);
-      preferences.setInt("pesan", null);
       preferences.setInt("intro", 0);
+      preferences.setInt("gps", null);
+      preferences.setInt("pesan", null);
+      preferences.setInt("alarm", null);
+      preferences.setInt("mesin", null);
+      preferences.setInt("notif", null);
+      preferences.setInt("status", null);
+      preferences.setInt("listrik", null);
       preferences.setInt("joindate", null);
       preferences.setString("name", null);
       preferences.setString("email", null);
