@@ -101,6 +101,7 @@ abstract class LoginController extends State<Login> {
             alarm,
             mesin,
             listrik,
+            count,
           )
         : savePref(
             null,
@@ -116,6 +117,7 @@ abstract class LoginController extends State<Login> {
             alarm,
             mesin,
             listrik,
+            count,
           );
     if (data.length == 0) {
       setState(() {
@@ -148,6 +150,7 @@ abstract class LoginController extends State<Login> {
     alarm,
     mesin,
     listrik,
+    count,
   ) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
@@ -156,8 +159,9 @@ abstract class LoginController extends State<Login> {
       preferences.setInt("alarm", alarm);
       preferences.setInt("mesin", mesin);
       preferences.setInt("notif", notif);
-      preferences.setInt("listrik", listrik);
       preferences.setInt("status", status);
+      preferences.setInt("mapcount", count);
+      preferences.setInt("listrik", listrik);
       preferences.setString("name", name);
       preferences.setString("pesan", pesan);
       preferences.setString("email", email);
