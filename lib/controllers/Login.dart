@@ -67,17 +67,17 @@ abstract class LoginController extends State<Login> {
       "email": user.text,
       "password": pass.text,
     });
-    final kontrol = await http.post(BaseUrl.kontrol, body: {});
 
     final data = json.decode(response.body);
-    final kontrolData = json.decode(kontrol.body);
+
     int intro = 1;
     int status = data['value'];
-    int gps = kontrolData['GPS'];
-    int notif = kontrolData['Notif'];
-    int alarm = kontrolData['Alarm'];
-    int mesin = kontrolData['Mesin'];
-    int listrik = kontrolData['Listrik'];
+    int gps = data['GPS'];
+    int notif = data['Notif'];
+    int alarm = data['Alarm'];
+    int mesin = data['Mesin'];
+    int listrik = data['Listrik'];
+    int count = data['MapCount'];
     String name = data['name'];
     String email = data['email'];
     String image = data['image'];
@@ -85,7 +85,6 @@ abstract class LoginController extends State<Login> {
     String password = data['password'];
     String joindate = data['date_created'];
     print(data);
-    print(kontrolData);
     remember
         ? savePref(
             intro,
