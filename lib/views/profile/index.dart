@@ -1,6 +1,6 @@
-import 'package:thesis_app/helper/profile_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:thesis_app/helper/profile_menu.dart';
 import 'package:thesis_app/controllers/Profile.dart';
 
 class ProfileBody extends StatefulWidget {
