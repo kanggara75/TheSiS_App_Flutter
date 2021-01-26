@@ -85,10 +85,38 @@ abstract class LoginController extends State<Login> {
     String password = data['password'];
     String joindate = data['date_created'];
     print(data);
-    print(intro);
+    print(kontrolData);
     remember
-        ? savePref(intro, status, joindate, name, email, image, pesan, password)
-        : savePref(null, null, null, null, null, null, null, null);
+        ? savePref(
+            intro,
+            status,
+            joindate,
+            name,
+            email,
+            image,
+            pesan,
+            password,
+            gps,
+            notif,
+            alarm,
+            mesin,
+            listrik,
+          )
+        : savePref(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            gps,
+            notif,
+            alarm,
+            mesin,
+            listrik,
+          );
     if (data.length == 0) {
       setState(() {
         msg = "Error";
@@ -106,10 +134,29 @@ abstract class LoginController extends State<Login> {
     }
   }
 
-  savePref(intro, status, joindate, name, email, image, pesan, password) async {
+  savePref(
+    intro,
+    status,
+    joindate,
+    name,
+    email,
+    image,
+    pesan,
+    password,
+    gps,
+    notif,
+    alarm,
+    mesin,
+    listrik,
+  ) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
+      preferences.setInt("gps", gps);
       preferences.setInt("intro", intro);
+      preferences.setInt("alarm", alarm);
+      preferences.setInt("mesin", mesin);
+      preferences.setInt("notif", notif);
+      preferences.setInt("listrik", listrik);
       preferences.setInt("status", status);
       preferences.setString("name", name);
       preferences.setString("pesan", pesan);
