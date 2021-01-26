@@ -23,6 +23,7 @@ class _ControlPanelState extends ControlPanelController {
               defaultColumnWidth: FixedColumnWidth(120.0),
               border: TableBorder.symmetric(
                 outside: BorderSide(width: 2, color: Colors.blue),
+              },
               ),
               children: [
                 alarmButton(),
