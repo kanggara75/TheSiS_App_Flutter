@@ -17,13 +17,19 @@ class _ControlPanelState extends ControlPanelController {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Colors.teal,
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blue.shade400),
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.blueAccent,
+            ),
             child: Table(
-              defaultColumnWidth: FixedColumnWidth(120.0),
-              border: TableBorder.symmetric(
-                outside: BorderSide(width: 2, color: Colors.blue),
+              columnWidths: {
+                0: FlexColumnWidth(2.5),
+                1: FlexColumnWidth(1),
               },
+              border: TableBorder(
+                horizontalInside: BorderSide(color: Colors.blue.shade400),
               ),
               children: [
                 alarmButton(),
