@@ -22,24 +22,23 @@ class UserProfile extends StatelessWidget {
 }
 
 abstract class ProfileController extends State<ProfileBody> {
+  var image, status, joindate, name, email, password;
+  var imageUrl = BaseUrl.baseUrl + "assets/img/profile/default.jpg";
+
   @override
   void initState() {
     super.initState();
     getPref();
   }
 
-  String imageUrl =
-      "https://thesis.kanggara.net/assets/img/profile/default.jpg";
-  var image;
-
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      int status = preferences.getInt("status");
-      String joindate = preferences.getString("joindate");
-      String name = preferences.getString("name");
-      String email = preferences.getString("email");
-      String password = preferences.getString("password");
+      status = preferences.getInt("status");
+      joindate = preferences.getString("joindate");
+      name = preferences.getString("name");
+      email = preferences.getString("email");
+      password = preferences.getString("password");
       image = preferences.getString("image");
       imageUrl = BaseUrl.profileImage + image;
     });
