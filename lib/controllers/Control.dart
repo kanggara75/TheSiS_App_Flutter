@@ -98,6 +98,7 @@ abstract class ControlPanelController extends State<ControlPanel> {
         savePref(gps, notif, alarm, mesin, listrik);
       });
     }
+    savePref(gps, notif, alarm, mesin, listrik);
   }
 
   savePref(gps, notif, alarm, mesin, listrik) async {
