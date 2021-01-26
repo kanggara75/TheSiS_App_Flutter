@@ -48,7 +48,7 @@ class _ControlPanelState extends ControlPanelController {
               height: getProportionateScreenHeight(5),
             ),
             Text(
-              "Alarm",
+              " Alarm",
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -104,7 +104,7 @@ class _ControlPanelState extends ControlPanelController {
               height: getProportionateScreenHeight(5),
             ),
             Text(
-              "Mesin",
+              " Mesin",
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -157,14 +157,14 @@ class _ControlPanelState extends ControlPanelController {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: getProportionateScreenHeight(10),
+              height: getProportionateScreenHeight(5),
             ),
             Text(
-              "Kelistrikan",
+              " Kelistrikan",
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 22,
+                fontSize: 30,
               ),
             ),
           ],
@@ -213,14 +213,14 @@ class _ControlPanelState extends ControlPanelController {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: getProportionateScreenHeight(10),
+              height: getProportionateScreenHeight(5),
             ),
             Text(
-              "Notifikasi",
+              " Notifikasi",
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 23,
+                fontSize: 30,
               ),
             ),
           ],
