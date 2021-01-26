@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/controllers/Control.dart';
 import 'package:thesis_app/controllers/Map.dart';
 import 'package:thesis_app/views/map/index.dart';
 import 'package:thesis_app/controllers/Admin.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/controllers/Profile.dart';
+import 'package:thesis_app/controllers/Control.dart';
 import 'package:thesis_app/controllers/Dashboard.dart';
 import 'package:thesis_app/views/navBar/user_Navbar.dart';
 import 'package:thesis_app/views/navBar/admin_Navbar.dart';
@@ -73,9 +73,9 @@ abstract class UserNavBarController extends State<UserNavBar> {
 
   Widget showPage = new UserProfile(); //TODO Halaman utama user
 
-  final ControlScreen _controlScreen = new ControlScreen();
   final MapScreen _mapScreen = new MapScreen();
   final UserProfile _userProfile = new UserProfile();
+  final ControlScreen _controlScreen = new ControlScreen();
   final UserLocationNow _locationNow = new UserLocationNow();
   final DashboardScreen _dashboardScreen = new DashboardScreen();
 
