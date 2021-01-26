@@ -44,7 +44,7 @@ class _UserNavBarState extends UserNavBarController {
         ],
         color: Colors.white,
         buttonBackgroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 53, 95, 103),
+        backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 600),
         onTap: (int tapedIndex) {
