@@ -67,10 +67,17 @@ abstract class LoginController extends State<Login> {
       "email": user.text,
       "password": pass.text,
     });
+    final kontrol = await http.post(BaseUrl.kontrol, body: {});
 
     final data = json.decode(response.body);
+    final kontrolData = json.decode(kontrol.body);
     int intro = 1;
     int status = data['value'];
+    int gps = kontrolData['GPS'];
+    int notif = kontrolData['Notif'];
+    int alarm = kontrolData['Alarm'];
+    int mesin = kontrolData['Mesin'];
+    int listrik = kontrolData['Listrik'];
     String name = data['name'];
     String email = data['email'];
     String image = data['image'];
