@@ -17,7 +17,9 @@ class _ControlPanelState extends ControlPanelController {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.all(15),
+            width: getProportionateScreenWidth(700),
+            height: getProportionateScreenHeight(200),
+            margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.blue.shade400),
               borderRadius: BorderRadius.circular(20),

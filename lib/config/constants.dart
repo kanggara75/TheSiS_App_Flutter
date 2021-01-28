@@ -56,6 +56,7 @@ class BaseUrl {
   static String login = baseUrl + "api/login";
   static String register = baseUrl + "api/register";
   static String kontrol = baseUrl + "api/getAllKontrol";
+  static String acc = baseUrl + "api/getAllAcc";
   static String updateKontrol = baseUrl + "api/updateKontrol";
   static String profileImage = baseUrl + "assets/img/profile/";
 }

@@ -4,18 +4,31 @@ import 'package:here_sdk/mapview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:here_sdk/routing.dart';
+import 'package:thesis_app/views/map/distance.dart';
 import 'package:thesis_app/views/map/index.dart';
+import 'package:thesis_app/views/map/counter.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/helper/location_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MapScreen extends StatelessWidget {
-  static String routeName = "/dashboard";
+  static String routeName = "/mappage";
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       body: MapPage(),
+    );
+  }
+}
+
+class MapCount extends StatelessWidget {
+  static String routeName = "/mapcount";
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    return Scaffold(
+      body: MapCounter(),
     );
   }
 }
@@ -206,5 +219,41 @@ abstract class UserLocationNowController extends State<UserLocationNow> {
         lat = preferences.getDouble("lat");
       },
     );
+  }
+}
+
+abstract class CounterMapController extends State<MapCounter> {
+  var mapcount;
+
+  @override
+  void initState() {
+    super.initState();
+    getPref();
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      mapcount = preferences.getInt("mapcount");
+      mapcount = mapcount == null ? 0 : mapcount;
+    });
+  }
+}
+
+abstract class DistanceMapController extends State<MapDistance> {
+  var mapcount;
+
+  @override
+  void initState() {
+    super.initState();
+    getPref();
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      mapcount = preferences.getInt("mapcount");
+      mapcount = mapcount == null ? 0 : mapcount;
+    });
   }
 }
