@@ -75,7 +75,7 @@ abstract class ControlPanelController extends State<ControlPanel> {
 
   // ignore: missing_return
   Future<List> update(int id, int state) async {
-    final kontrol = await http.post(BaseUrl.updateKontrol, body: {
+    final kontrol = await http.post(BaseUrl.kontrol, body: {
       "id": id.toString(),
       "state": state.toString(),
     });

@@ -55,8 +55,7 @@ class BaseUrl {
   static String baseUrl = "http://192.168.43.15/thesis/";
   static String login = baseUrl + "api/login";
   static String register = baseUrl + "api/register";
-  static String kontrol = baseUrl + "api/getAllKontrol";
-  static String acc = baseUrl + "api/getAllAcc";
-  static String updateKontrol = baseUrl + "api/updateKontrol";
+  static String kontrol = baseUrl + "api/kontrol";
+  static String acc = baseUrl + "api/acc";
   static String profileImage = baseUrl + "assets/img/profile/";
 }
