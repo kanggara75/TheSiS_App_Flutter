@@ -35,7 +35,7 @@ abstract class AdminNavBarController extends State<AdminNavBar> {
 
   Widget showPage = new AdminHomeScreen();
 
-  final AdminHomeScreen _adminPage = new AdminHomeScreen();
+  final AdminHomeScreen _adminHomeScreen = new AdminHomeScreen();
   final MapScreen _mapScreen = new MapScreen();
   final UserProfile _userProfile = new UserProfile();
   final UserLocationNow _locationNow = new UserLocationNow();
@@ -44,7 +44,7 @@ abstract class AdminNavBarController extends State<AdminNavBar> {
   pageChooser(int page) {
     switch (page) {
       case 0:
-        return _adminPage;
+        return _adminHomeScreen;
         break;
       case 1:
         return _dashboardScreen;
