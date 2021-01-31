@@ -47,7 +47,6 @@ abstract class ChartController extends State<ChartBody> {
       new Duration(seconds: 30),
       (t) => makeRequest(),
     );
-    // seriesList = _createChart();
   }
 
   @override
@@ -83,43 +82,21 @@ abstract class ChartController extends State<ChartBody> {
       ),
       titlesData: FlTitlesData(
         bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 22,
-          getTextStyles: (value) => const TextStyle(
-            color: Color(0xff72719b),
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          margin: 10,
+          showTitles: false,
         ),
         leftTitles: SideTitles(
           showTitles: true,
           getTextStyles: (value) => const TextStyle(
             color: Color(0xff75729e),
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
+            fontWeight: FontWeight.normal,
+            fontSize: 12,
           ),
-          margin: 8,
-          reservedSize: 30,
+          margin: 10,
+          reservedSize: 35,
         ),
       ),
       borderData: FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(
-            color: Color(0xff4e4965),
-            width: 4,
-          ),
-          left: BorderSide(
-            color: Colors.transparent,
-          ),
-          right: BorderSide(
-            color: Colors.transparent,
-          ),
-          top: BorderSide(
-            color: Colors.transparent,
-          ),
-        ),
+        show: false,
       ),
       minX: 1,
       maxX: 51,
