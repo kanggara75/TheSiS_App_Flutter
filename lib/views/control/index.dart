@@ -21,9 +21,11 @@ class _ControlPanelState extends ControlPanelController {
             height: getProportionateScreenHeight(200),
             margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue.shade400),
+              border: Border.all(
+                color: Color.fromARGB(255, 150, 196, 255),
+              ),
               borderRadius: BorderRadius.circular(20),
-              color: Colors.blueAccent,
+              color: Color.fromARGB(255, 150, 196, 255),
             ),
             child: Table(
               columnWidths: {
@@ -31,7 +33,9 @@ class _ControlPanelState extends ControlPanelController {
                 1: FlexColumnWidth(1),
               },
               border: TableBorder(
-                horizontalInside: BorderSide(color: Colors.blue.shade400),
+                horizontalInside: BorderSide(
+                  color: Color.fromARGB(255, 189, 178, 255),
+                ),
               ),
               children: [
                 alarmButton(),
