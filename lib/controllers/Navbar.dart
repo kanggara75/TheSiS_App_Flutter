@@ -4,7 +4,7 @@ import 'package:thesis_app/views/map/index.dart';
 import 'package:thesis_app/controllers/Admin.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/controllers/Profile.dart';
-import 'package:thesis_app/controllers/Control.dart';
+import 'package:thesis_app/controllers/User.dart';
 import 'package:thesis_app/controllers/Dashboard.dart';
 import 'package:thesis_app/views/navBar/user_Navbar.dart';
 import 'package:thesis_app/views/navBar/admin_Navbar.dart';
@@ -33,9 +33,9 @@ class AdminScreen extends StatelessWidget {
 abstract class AdminNavBarController extends State<AdminNavBar> {
   int pageIndex = 0;
 
-  Widget showPage = new AdminPage();
+  Widget showPage = new AdminHomeScreen();
 
-  final AdminPage _adminPage = new AdminPage();
+  final AdminHomeScreen _adminPage = new AdminHomeScreen();
   final MapScreen _mapScreen = new MapScreen();
   final UserProfile _userProfile = new UserProfile();
   final UserLocationNow _locationNow = new UserLocationNow();
@@ -71,18 +71,18 @@ abstract class AdminNavBarController extends State<AdminNavBar> {
 abstract class UserNavBarController extends State<UserNavBar> {
   int pageIndex = 0;
 
-  Widget showPage = new UserProfile(); //TODO Halaman utama user
+  Widget showPage = new UserHomeScreen();
 
   final MapScreen _mapScreen = new MapScreen();
   final UserProfile _userProfile = new UserProfile();
-  final ControlScreen _controlScreen = new ControlScreen();
   final UserLocationNow _locationNow = new UserLocationNow();
+  final UserHomeScreen _userHomeScreen = new UserHomeScreen();
   final DashboardScreen _dashboardScreen = new DashboardScreen();
 
   pageChooser(int page) {
     switch (page) {
       case 0:
-        return _controlScreen;
+        return _userHomeScreen;
         break;
       case 1:
         return _dashboardScreen;

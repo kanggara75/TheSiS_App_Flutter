@@ -1,17 +1,14 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:thesis_app/config/constants.dart';
-import 'package:thesis_app/config/size_config.dart';
-
-import 'package:thesis_app/views/login/index.dart'; //LoginBody
-import 'package:thesis_app/views/login/login.dart';
-
 import 'package:thesis_app/controllers/User.dart';
+import 'package:thesis_app/config/constants.dart';
+import 'package:thesis_app/views/login/login.dart';
+import 'package:thesis_app/views/login/index.dart'; //LoginBody
+import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/controllers/Navbar.dart';
 import 'package:thesis_app/controllers/Forgot.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   static String routeName = "/login";
