@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:here_sdk/core.dart';
-import 'package:thesis_app/config/routes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:thesis_app/config/theme.dart';
+import 'package:thesis_app/config/routes.dart';
 import 'package:thesis_app/controllers/Splash.dart';
 
 void main() {
