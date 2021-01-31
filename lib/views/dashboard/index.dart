@@ -4,8 +4,8 @@ import 'package:thesis_app/views/map/distance.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/control/index.dart';
 import 'package:thesis_app/controllers/Dashboard.dart';
-import 'package:thesis_app/views/map/deviceStatus.dart';
 import 'package:thesis_app/views/dashboard/fl_chart.dart';
+import 'package:thesis_app/views/control/deviceStatus.dart';
 
 class DashboardBody extends StatefulWidget {
   @override
