@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/controllers/Login.dart';
 import 'package:thesis_app/views/profile/index.dart';
+import 'package:thesis_app/views/profile/userInfo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thesis_app/config/constants.dart';
 
 class UserProfile extends StatelessWidget {
   static String routeName = "/profile";
@@ -61,6 +62,28 @@ abstract class ProfileController extends State<ProfileBody> {
       preferences.setString("image", null);
       preferences.setString("password", null);
       Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+    });
+  }
+}
+
+abstract class UserInfoController extends State<UserInfo> {
+  var image, joindate, name, email;
+  var imageUrl = BaseUrl.baseUrl + "assets/img/profile/default.jpg";
+
+  @override
+  void initState() {
+    super.initState();
+    getPref();
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      joindate = preferences.getString("joindate");
+      name = preferences.getString("name");
+      email = preferences.getString("email");
+      image = preferences.getString("image");
+      imageUrl = BaseUrl.profileImage + image;
     });
   }
 }
