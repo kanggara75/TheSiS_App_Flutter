@@ -23,8 +23,9 @@ class UserProfile extends StatelessWidget {
 }
 
 abstract class ProfileController extends State<ProfileBody> {
+  bool isConnect = false;
   var image, status, joindate, name, email, password;
-  var imageUrl = BaseUrl.baseUrl + "assets/img/profile/default.jpg";
+  var imageUrl;
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ abstract class ProfileController extends State<ProfileBody> {
       password = preferences.getString("password");
       image = preferences.getString("image");
       imageUrl = BaseUrl.profileImage + image;
+      isConnect = true;
     });
   }
 
@@ -67,8 +69,9 @@ abstract class ProfileController extends State<ProfileBody> {
 }
 
 abstract class UserInfoController extends State<UserInfo> {
+  bool isConnect = false;
   var image, joindate, name, email;
-  var imageUrl = BaseUrl.baseUrl + "assets/img/profile/default.jpg";
+  var imageUrl;
 
   @override
   void initState() {
@@ -84,6 +87,7 @@ abstract class UserInfoController extends State<UserInfo> {
       email = preferences.getString("email");
       image = preferences.getString("image");
       imageUrl = BaseUrl.profileImage + image;
+      isConnect = true;
     });
   }
 }

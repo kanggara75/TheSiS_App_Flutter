@@ -115,11 +115,13 @@ class _UserInfoState extends UserInfoController {
               fit: StackFit.expand,
               overflow: Overflow.visible,
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white70,
-                  foregroundColor: Colors.black,
-                  backgroundImage: NetworkImage(imageUrl),
-                ),
+                isConnect
+                    ? CircleAvatar(
+                        backgroundColor: Colors.white70,
+                        foregroundColor: Colors.black,
+                        backgroundImage: NetworkImage(imageUrl),
+                      )
+                    : CircularProgressIndicator(),
               ],
             ),
           ),

@@ -22,9 +22,13 @@ class _ProfileBodyState extends ProfileController {
               fit: StackFit.expand,
               overflow: Overflow.visible,
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(imageUrl),
-                ),
+                isConnect
+                    ? CircleAvatar(
+                        backgroundColor: Colors.white70,
+                        foregroundColor: Colors.black,
+                        backgroundImage: NetworkImage(imageUrl),
+                      )
+                    : CircularProgressIndicator(),
                 Positioned(
                   right: -16,
                   bottom: 0,
