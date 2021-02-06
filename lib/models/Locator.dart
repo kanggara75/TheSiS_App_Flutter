@@ -29,7 +29,15 @@ class MapList extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
-      child: Text("Coming Soon...\n\n Sorry"),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Coming Soon...\n\n"),
+            Text("Sorry..."),
+          ],
+        ),
+      ),
     );
   }
 }
