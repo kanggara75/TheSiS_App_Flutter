@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/config/size_config.dart';
+import 'package:thesis_app/models/Locator.dart';
 import 'package:thesis_app/controllers/User.dart';
+import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/helper/default_button.dart';
 
 class UserButton extends StatefulWidget {
@@ -19,14 +20,16 @@ class _UserButtonState extends UserButtonController {
         color: Colors.white24,
       ),
       child: ListView(
+        reverse: true,
+        scrollDirection: Axis.vertical,
         children: [
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: getProportionateScreenWidth(5),
@@ -34,21 +37,25 @@ class _UserButtonState extends UserButtonController {
                   FnButton(
                     text: "Map List",
                     color: Color.fromARGB(255, 70, 158, 157),
-                    press: showToast,
+                    press: () {
+                      Navigator.pushNamed(context, MapList.routeName);
+                    },
                   ),
                   FnButton(
                     text: "Last Location",
                     color: Color.fromARGB(255, 70, 158, 157),
-                    press: showToast,
+                    press: () {
+                      Navigator.pushNamed(context, Near10.routeName);
+                    },
                   ),
                   SizedBox(
                     width: getProportionateScreenWidth(5),
                   ),
                 ],
               ),
+              //Admin Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: getProportionateScreenWidth(5),
