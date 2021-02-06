@@ -23,6 +23,7 @@ class _NearPlaceState extends NearPlaceController {
         color: Color.fromARGB(255, 7, 30, 34),
       ),
       child: ListView(
+        reverse: true,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,12 +44,25 @@ class _NearPlaceState extends NearPlaceController {
                         2: FlexColumnWidth(1),
                       },
                       border: TableBorder(
-                          horizontalInside: BorderSide(
-                            color: Color.fromARGB(255, 248, 250, 241),
-                          ),
-                          verticalInside: BorderSide(
-                            color: Color.fromARGB(255, 248, 250, 241),
-                          )),
+                        top: BorderSide(
+                          color: Color.fromARGB(255, 248, 250, 241),
+                        ),
+                        right: BorderSide(
+                          color: Color.fromARGB(255, 248, 250, 241),
+                        ),
+                        left: BorderSide(
+                          color: Color.fromARGB(255, 248, 250, 241),
+                        ),
+                        bottom: BorderSide(
+                          color: Color.fromARGB(255, 248, 250, 241),
+                        ),
+                        horizontalInside: BorderSide(
+                          color: Color.fromARGB(255, 248, 250, 241),
+                        ),
+                        verticalInside: BorderSide(
+                          color: Color.fromARGB(255, 248, 250, 241),
+                        ),
+                      ),
                       children: [
                         headerTable(),
                         tableContent(
