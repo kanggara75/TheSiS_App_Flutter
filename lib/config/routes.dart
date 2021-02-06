@@ -1,5 +1,6 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'package:flutter/widgets.dart';
+import 'package:thesis_app/models/Locator.dart';
 import 'package:thesis_app/controllers/Map.dart';
 import 'package:thesis_app/controllers/User.dart';
 import 'package:thesis_app/controllers/Intro.dart'; //Intro
@@ -13,6 +14,8 @@ import 'package:thesis_app/controllers/Control.dart';
 // We use name route
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
+  Near10.routeName: (context) => Near10(),
+  MapList.routeName: (context) => MapList(),
   MapCount.routeName: (context) => MapCount(),
   MapScreen.routeName: (context) => MapScreen(),
   UserScreen.routeName: (context) => UserScreen(),
