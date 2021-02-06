@@ -32,11 +32,6 @@ class _AdminNavBarState extends AdminNavBarController {
             color: tap == 2 ? Color(0xFF06b3fa) : Color.fromARGB(255, 0, 0, 0),
           ),
           Icon(
-            Icons.settings_remote,
-            size: 30,
-            color: tap == 3 ? Color(0xFF06b3fa) : Color.fromARGB(255, 0, 0, 0),
-          ),
-          Icon(
             Icons.person,
             size: 30,
             color: tap == 4 ? Color(0xFF06b3fa) : Color.fromARGB(255, 0, 0, 0),
