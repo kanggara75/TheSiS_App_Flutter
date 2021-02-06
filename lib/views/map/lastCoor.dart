@@ -23,6 +23,7 @@ class _LastCoordinatState extends LastCoordController {
         color: Color.fromARGB(255, 189, 178, 255),
       ),
       child: ListView(
+        reverse: true,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
