@@ -37,7 +37,7 @@ class _MapDistanceState extends DistanceController {
               "$distance",
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -45,7 +45,7 @@ class _MapDistanceState extends DistanceController {
               "\n$sign",
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),

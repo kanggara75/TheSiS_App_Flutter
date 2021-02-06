@@ -81,7 +81,6 @@ abstract class ControlPanelController extends State<ControlPanel> {
     });
 
     final kontrolData = json.decode(kontrol.body);
-    print(kontrolData);
     gps = kontrolData['GPS'];
     notif = kontrolData['Notif'];
     alarm = kontrolData['Alarm'];
@@ -96,9 +95,9 @@ abstract class ControlPanelController extends State<ControlPanel> {
     } else {
       setState(() {
         savePref(gps, notif, alarm, mesin, listrik);
+        print(kontrolData);
       });
     }
-    savePref(gps, notif, alarm, mesin, listrik);
   }
 
   savePref(gps, notif, alarm, mesin, listrik) async {

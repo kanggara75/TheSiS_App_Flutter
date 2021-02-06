@@ -92,3 +92,38 @@ class GuestButton extends StatelessWidget {
     );
   }
 }
+
+class FnButton extends StatelessWidget {
+  const FnButton({
+    Key key,
+    this.text,
+    this.press,
+    this.color,
+  }) : super(key: key);
+  final Color color;
+  final String text;
+  final Function press;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: getProportionateScreenWidth(150),
+      child: FlatButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        color: color == null ? Colors.teal : color,
+        onPressed: press == null
+            ? () {
+                print("FnButton Presed");
+              }
+            : press,
+        child: Text(
+          text == null ? "FnButton" : text,
+          style: TextStyle(
+            fontSize: getProportionateScreenWidth(18),
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
