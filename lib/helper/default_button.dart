@@ -109,7 +109,7 @@ class FnButton extends StatelessWidget {
     return SizedBox(
       width: getProportionateScreenWidth(150),
       child: FlatButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: color == null ? Colors.teal : color,
         onPressed: press == null
             ? () {
