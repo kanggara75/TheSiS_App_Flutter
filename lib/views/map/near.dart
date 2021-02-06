@@ -22,56 +22,60 @@ class _NearPlaceState extends NearPlaceController {
         borderRadius: BorderRadius.circular(20),
         color: Color.fromARGB(255, 7, 30, 34),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: ListView(
         children: [
-          Text(
-            "4 Lokasi Terakhir",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "4 Lokasi Terakhir",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
+              ),
+              isShowingData
+                  ? Table(
+                      columnWidths: {
+                        0: FlexColumnWidth(0.5),
+                        1: FlexColumnWidth(2),
+                        2: FlexColumnWidth(1),
+                      },
+                      border: TableBorder(
+                          horizontalInside: BorderSide(
+                            color: Color.fromARGB(255, 248, 250, 241),
+                          ),
+                          verticalInside: BorderSide(
+                            color: Color.fromARGB(255, 248, 250, 241),
+                          )),
+                      children: [
+                        headerTable(),
+                        tableContent(
+                          1,
+                          p0,
+                          time0,
+                        ),
+                        tableContent(
+                          2,
+                          p1,
+                          time1,
+                        ),
+                        tableContent(
+                          3,
+                          p2,
+                          time2,
+                        ),
+                        tableContent(
+                          4,
+                          p3,
+                          time3,
+                        ),
+                      ],
+                    )
+                  : CircularProgressIndicator(),
+            ],
           ),
-          isShowingMainData
-              ? Table(
-                  columnWidths: {
-                    0: FlexColumnWidth(0.5),
-                    1: FlexColumnWidth(2),
-                    2: FlexColumnWidth(1),
-                  },
-                  border: TableBorder(
-                      horizontalInside: BorderSide(
-                        color: Color.fromARGB(255, 248, 250, 241),
-                      ),
-                      verticalInside: BorderSide(
-                        color: Color.fromARGB(255, 248, 250, 241),
-                      )),
-                  children: [
-                    headerTable(),
-                    tableContent(
-                      1,
-                      p0,
-                      time0,
-                    ),
-                    tableContent(
-                      2,
-                      p1,
-                      time1,
-                    ),
-                    tableContent(
-                      3,
-                      p2,
-                      time2,
-                    ),
-                    tableContent(
-                      4,
-                      p3,
-                      time3,
-                    ),
-                  ],
-                )
-              : CircularProgressIndicator(),
         ],
       ),
     );

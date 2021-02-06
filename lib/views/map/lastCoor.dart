@@ -22,67 +22,71 @@ class _LastCoordinatState extends LastCoordController {
         borderRadius: BorderRadius.circular(20),
         color: Color.fromARGB(255, 189, 178, 255),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: ListView(
         children: [
-          Text(
-            "5 Koordinat Terakhir",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 25,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "5 Koordinat Terakhir",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+              ),
+              isShowingMainData
+                  ? Table(
+                      columnWidths: {
+                        0: FlexColumnWidth(0.5),
+                        1: FlexColumnWidth(1),
+                        2: FlexColumnWidth(1),
+                        3: FlexColumnWidth(1),
+                      },
+                      border: TableBorder(
+                          horizontalInside: BorderSide(
+                            color: Color.fromARGB(255, 7, 30, 34),
+                          ),
+                          verticalInside: BorderSide(
+                            color: Color.fromARGB(255, 255, 255, 252),
+                          )),
+                      children: [
+                        headerTable(),
+                        tableContent(
+                          1,
+                          lat0,
+                          lon0,
+                          time0,
+                        ),
+                        tableContent(
+                          2,
+                          lat1,
+                          lon1,
+                          time1,
+                        ),
+                        tableContent(
+                          3,
+                          lat2,
+                          lon2,
+                          time2,
+                        ),
+                        tableContent(
+                          4,
+                          lat3,
+                          lon3,
+                          time3,
+                        ),
+                        tableContent(
+                          5,
+                          lat4,
+                          lon4,
+                          time4,
+                        ),
+                      ],
+                    )
+                  : CircularProgressIndicator(),
+            ],
           ),
-          isShowingMainData
-              ? Table(
-                  columnWidths: {
-                    0: FlexColumnWidth(0.5),
-                    1: FlexColumnWidth(1),
-                    2: FlexColumnWidth(1),
-                    3: FlexColumnWidth(1),
-                  },
-                  border: TableBorder(
-                      horizontalInside: BorderSide(
-                        color: Color.fromARGB(255, 7, 30, 34),
-                      ),
-                      verticalInside: BorderSide(
-                        color: Color.fromARGB(255, 255, 255, 252),
-                      )),
-                  children: [
-                    headerTable(),
-                    tableContent(
-                      1,
-                      lat0,
-                      lon0,
-                      time0,
-                    ),
-                    tableContent(
-                      2,
-                      lat1,
-                      lon1,
-                      time1,
-                    ),
-                    tableContent(
-                      3,
-                      lat2,
-                      lon2,
-                      time2,
-                    ),
-                    tableContent(
-                      4,
-                      lat3,
-                      lon3,
-                      time3,
-                    ),
-                    tableContent(
-                      5,
-                      lat4,
-                      lon4,
-                      time4,
-                    ),
-                  ],
-                )
-              : CircularProgressIndicator(),
         ],
       ),
     );
