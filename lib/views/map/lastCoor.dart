@@ -11,9 +11,10 @@ class _LastCoordinatState extends LastCoordController {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getProportionateScreenHeight(270),
+      height: getProportionateScreenHeight(275),
       width: getProportionateScreenWidth(double.infinity),
       margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
       decoration: BoxDecoration(
         border: Border.all(
           color: Color.fromARGB(255, 189, 178, 255),

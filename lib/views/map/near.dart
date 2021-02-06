@@ -13,6 +13,7 @@ class _NearPlaceState extends NearPlaceController {
     return Container(
       height: getProportionateScreenHeight(double.infinity),
       width: getProportionateScreenWidth(double.infinity),
+      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
       margin: EdgeInsets.fromLTRB(15, 5, 15, 0),
       decoration: BoxDecoration(
         border: Border.all(
