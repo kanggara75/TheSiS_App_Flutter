@@ -1,10 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/control/index.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ControlScreen extends StatelessWidget {
   static String routeName = "/control";
@@ -18,27 +18,29 @@ class ControlScreen extends StatelessWidget {
 }
 
 abstract class ControlPanelController extends State<ControlPanel> {
-  bool alarmS = false, mesinS = false, notifS = false, listrikS = false;
-  int alarm, mesin, notif, listrik, gps;
+  bool alarmS = false,
+      mesinS = false,
+      notifS = false,
+      listrikS = false,
+      updateState = false;
+  int alarm, mesin, notif, listrik;
+  Timer timer;
 
   @override
   void initState() {
     super.initState();
-    getPref();
+    updateState = false;
+    makeRequest();
+    timer = new Timer.periodic(
+      new Duration(seconds: 5),
+      (t) => makeRequest(),
+    );
   }
 
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      alarm = preferences.getInt("alarm");
-      mesin = preferences.getInt("mesin");
-      listrik = preferences.getInt("listrik");
-      notif = preferences.getInt("notif");
-      alarmS = alarm == 0 ? false : true;
-      notifS = notif == 0 ? false : true;
-      mesinS = mesin == 0 ? false : true;
-      listrikS = listrik == 0 ? false : true;
-    });
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   alarmState() {
@@ -81,7 +83,33 @@ abstract class ControlPanelController extends State<ControlPanel> {
     });
 
     final kontrolData = json.decode(kontrol.body);
-    gps = kontrolData['GPS'];
+    notif = kontrolData['Notif'];
+    alarm = kontrolData['Alarm'];
+    mesin = kontrolData['Mesin'];
+    listrik = kontrolData['Listrik'];
+    if (kontrolData.length == 0) {
+      setState(() {
+        String msg = "Error";
+        print(msg);
+      });
+    } else {
+      setState(() {
+        alarmS = alarm == 0 ? false : true;
+        notifS = notif == 0 ? false : true;
+        mesinS = mesin == 0 ? false : true;
+        listrikS = listrik == 0 ? false : true;
+        updateState = true;
+      });
+    }
+  }
+
+  makeRequest() async {
+    var kontrol = await http.get(
+      BaseUrl.kontrol,
+      headers: {'Accept': 'application/json'},
+    );
+
+    final kontrolData = json.decode(kontrol.body);
     notif = kontrolData['Notif'];
     alarm = kontrolData['Alarm'];
     mesin = kontrolData['Mesin'];
@@ -94,20 +122,12 @@ abstract class ControlPanelController extends State<ControlPanel> {
       });
     } else {
       setState(() {
-        savePref(gps, notif, alarm, mesin, listrik);
-        print(kontrolData);
+        alarmS = alarm == 0 ? false : true;
+        notifS = notif == 0 ? false : true;
+        mesinS = mesin == 0 ? false : true;
+        listrikS = listrik == 0 ? false : true;
+        updateState = true;
       });
     }
-  }
-
-  savePref(gps, notif, alarm, mesin, listrik) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      preferences.setInt("gps", gps);
-      preferences.setInt("alarm", alarm);
-      preferences.setInt("mesin", mesin);
-      preferences.setInt("notif", notif);
-      preferences.setInt("listrik", listrik);
-    });
   }
 }

@@ -27,23 +27,25 @@ class _ControlPanelState extends ControlPanelController {
               borderRadius: BorderRadius.circular(20),
               color: Color.fromARGB(255, 150, 196, 255),
             ),
-            child: Table(
-              columnWidths: {
-                0: FlexColumnWidth(2.5),
-                1: FlexColumnWidth(1),
-              },
-              border: TableBorder(
-                horizontalInside: BorderSide(
-                  color: Color.fromARGB(255, 189, 178, 255),
-                ),
-              ),
-              children: [
-                alarmButton(),
-                mesinButton(),
-                listrikButton(),
-                notifButton(),
-              ],
-            ),
+            child: updateState
+                ? Table(
+                    columnWidths: {
+                      0: FlexColumnWidth(2.5),
+                      1: FlexColumnWidth(1),
+                    },
+                    border: TableBorder(
+                      horizontalInside: BorderSide(
+                        color: Color.fromARGB(255, 189, 178, 255),
+                      ),
+                    ),
+                    children: [
+                      alarmButton(),
+                      mesinButton(),
+                      listrikButton(),
+                      notifButton(),
+                    ],
+                  )
+                : CircularProgressIndicator(),
           ),
         ],
       ),
