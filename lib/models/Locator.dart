@@ -13,7 +13,7 @@ import 'package:thesis_app/config/constants.dart';
 abstract class NearPlaceController extends State<NearPlace> {
   Timer timer;
   List dataAcc;
-  bool isShowingMainData;
+  bool isShowingData = false;
   var lat0, lat1, lat2, lat3;
   var lon0, lon1, lon2, lon3;
   var time0, time1, time2, time3;
@@ -23,7 +23,6 @@ abstract class NearPlaceController extends State<NearPlace> {
   void initState() {
     super.initState();
     makeRequest();
-    isShowingMainData = false;
     timer = new Timer.periodic(
       new Duration(seconds: 30),
       (t) => makeRequest(),
@@ -55,7 +54,7 @@ abstract class NearPlaceController extends State<NearPlace> {
       time1 = dataMap['1Time'];
       time2 = dataMap['2Time'];
       time3 = dataMap['3Time'];
-      isShowingMainData = true;
+      isShowingData = true;
     });
     cekKoor();
   }
