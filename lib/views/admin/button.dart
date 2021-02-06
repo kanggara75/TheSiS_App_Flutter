@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/size_config.dart';
+import 'package:thesis_app/controllers/Navbar.dart';
 import 'package:thesis_app/helper/default_button.dart';
 import 'package:thesis_app/models/Locator.dart';
 
@@ -56,7 +57,9 @@ class AdminButton extends StatelessWidget {
                   FnButton(
                     text: "Admin Panel",
                     color: Color.fromARGB(255, 255, 151, 218),
-                    // press: showToast,
+                    press: () {
+                      Navigator.pushNamed(context, AdminPanelScreen.routeName);
+                    },
                   ),
                   FnButton(
                     text: "HW Manager",

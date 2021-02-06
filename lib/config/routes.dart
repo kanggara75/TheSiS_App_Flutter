@@ -27,4 +27,5 @@ final Map<String, WidgetBuilder> routes = {
   ControlScreen.routeName: (context) => ControlScreen(),
   UserHomeScreen.routeName: (context) => UserHomeScreen(),
   AdminHomeScreen.routeName: (context) => AdminHomeScreen(),
+  AdminPanelScreen.routeName: (context) => AdminPanelScreen(),
 };
