@@ -22,6 +22,7 @@ class _MapCounterState extends CounterMapController {
       ),
       child: Center(
         child: ListView(
+          reverse: true,
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
