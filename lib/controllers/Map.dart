@@ -1,13 +1,18 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:here_sdk/routing.dart';
-import 'package:thesis_app/views/map/distance.dart';
+import 'package:http/http.dart' as http;
 import 'package:thesis_app/views/map/index.dart';
+import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/views/map/counter.dart';
 import 'package:thesis_app/config/size_config.dart';
+import 'package:thesis_app/views/map/lastCoor.dart';
 import 'package:thesis_app/helper/location_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -182,7 +187,8 @@ abstract class MapController extends State<MapPage> {
 
 abstract class UserLocationNowController extends State<UserLocationNow> {
   LocationService locationService = LocationService();
-  double lat, lon;
+  double lat, lon, lat0, lon0;
+  var distance, e, d, sign;
 
   @override
   void initState() {
@@ -217,8 +223,34 @@ abstract class UserLocationNowController extends State<UserLocationNow> {
       () {
         lon = preferences.getDouble("lon");
         lat = preferences.getDouble("lat");
+        lon0 = preferences.getDouble("lon0");
+        lat0 = preferences.getDouble("lat0");
+        getDistanceFromLatLonInKm(lat, lon, lat0, lon0);
+
+        e = d <= 1 ? (d * 1000) : d;
+        print(e);
+        distance = e.toStringAsFixed(2);
+
+        sign = d <= 1 ? 'Meters' : 'Km';
+        print(sign);
       },
     );
+  }
+
+  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * sin(dLon / 2) * sin(dLon / 2);
+    var c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    d = R * c; // Distance in km
+
+    return d;
+  }
+
+  deg2rad(deg) {
+    return deg * (22 / 7 / 180);
   }
 }
 
@@ -240,20 +272,75 @@ abstract class CounterMapController extends State<MapCounter> {
   }
 }
 
-abstract class DistanceMapController extends State<MapDistance> {
-  var mapcount;
+abstract class LastCoordController extends State<LastCoordinat> {
+  var lat0,
+      lat1,
+      lat2,
+      lat3,
+      lat4,
+      lon0,
+      lon1,
+      lon2,
+      lon3,
+      lon4,
+      time0,
+      time1,
+      time2,
+      time3,
+      time4;
+  bool isShowingMainData;
+  List dataAcc;
+  Timer timer;
 
   @override
   void initState() {
     super.initState();
-    getPref();
+    makeRequest();
+    isShowingMainData = false;
+    timer = new Timer.periodic(
+      new Duration(seconds: 30),
+      (t) => makeRequest(),
+    );
   }
 
-  getPref() async {
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  makeRequest() async {
+    var response = await http.get(
+      BaseUrl.maplist,
+      headers: {'Accept': 'application/json'},
+    );
+    final dataMap = json.decode(response.body);
+    setState(() {
+      lat0 = dataMap['0Lat'];
+      lat1 = dataMap['1Lat'];
+      lat2 = dataMap['2Lat'];
+      lat3 = dataMap['3Lat'];
+      lat4 = dataMap['4Lat'];
+      lon0 = dataMap['0Lon'];
+      lon1 = dataMap['1Lon'];
+      lon2 = dataMap['2Lon'];
+      lon3 = dataMap['3Lon'];
+      lon4 = dataMap['4Lon'];
+      time0 = dataMap['0Time'];
+      time1 = dataMap['1Time'];
+      time2 = dataMap['2Time'];
+      time3 = dataMap['3Time'];
+      time4 = dataMap['4Time'];
+      isShowingMainData = true;
+      savePref(lon0, lat0);
+    });
+  }
+
+  savePref(lon, lat) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      mapcount = preferences.getInt("mapcount");
-      mapcount = mapcount == null ? 0 : mapcount;
+      preferences.setDouble("lon0", lon);
+      preferences.setDouble("lat0", lat);
     });
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thesis_app/controllers/User.dart';
 import 'package:thesis_app/views/dashboard/title.dart';
 import 'package:thesis_app/views/map/lastCoor.dart';
+import 'package:thesis_app/views/map/near.dart';
 import 'package:thesis_app/views/profile/userInfo.dart';
 
 class UserBody extends StatefulWidget {
@@ -32,11 +33,7 @@ class _UserBodyState extends UserBodyController {
         //Acc Chart Section
         Flexible(
           flex: 3,
-          child: Container(
-            margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-            color: Colors.blueAccent,
-            // child: Text("You Are Now in ---"),
-          ),
+          child: NearPlace(),
         ),
       ],
     );

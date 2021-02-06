@@ -34,7 +34,7 @@ class _MapCounterState extends CounterMapController {
               ),
             ),
             Text(
-              "$mapcount", //TODO Maksimal 1000
+              "$mapcount",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 35,

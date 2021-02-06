@@ -51,7 +51,7 @@ class _UserLocationNowState extends UserLocationNowController {
           children: [
             Text("Longitude"),
             Text(
-              '$lon',
+              '$lon , $lon0',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -59,7 +59,15 @@ class _UserLocationNowState extends UserLocationNowController {
             ),
             Text("Latitude"),
             Text(
-              '$lat',
+              '$lat , $lat0',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text("Distance"),
+            Text(
+              '$distance $sign',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/size_config.dart';
-import 'package:thesis_app/controllers/Map.dart';
+import 'package:thesis_app/models/Locator.dart';
 
 class MapDistance extends StatefulWidget {
   @override
   _MapDistanceState createState() => _MapDistanceState();
 }
 
-class _MapDistanceState extends DistanceMapController {
+class _MapDistanceState extends DistanceController {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,9 +16,9 @@ class _MapDistanceState extends DistanceMapController {
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.fromLTRB(2, 2, 2, 0),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.green.shade400),
+        border: Border.all(color: Color.fromARGB(255, 253, 255, 182)),
         borderRadius: BorderRadius.circular(5),
-        color: Colors.greenAccent,
+        color: Color.fromARGB(255, 253, 255, 182),
       ),
       child: Center(
         child: Column(
@@ -26,7 +26,7 @@ class _MapDistanceState extends DistanceMapController {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Jarak Dengan Kendaraan\n", //TODO Maksimal 1000
+              "Jarak Dengan Kendaraan\n",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
@@ -34,18 +34,18 @@ class _MapDistanceState extends DistanceMapController {
               ),
             ),
             Text(
-              "$mapcount", //TODO Maksimal 1000
+              "$distance",
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 35,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              "Meters",
+              "\n$sign",
               style: TextStyle(
                 color: Colors.black,
-                // fontSize: 35,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
