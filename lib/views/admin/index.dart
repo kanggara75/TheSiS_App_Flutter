@@ -1,25 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:thesis_app/views/map/near.dart';
+import 'package:thesis_app/views/map/lastCoor.dart';
+import 'package:thesis_app/views/admin/button.dart';
+import 'package:thesis_app/views/dashboard/title.dart';
+import 'package:thesis_app/views/profile/userInfo.dart';
 
 class AdminBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Admin Page"),
-            Text("Admin Page"),
-          ],
+        Flexible(
+          flex: 3,
+          child: TitleBar(),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Admin Page"),
-            Text("Admin Page"),
-          ],
-        )
+        Flexible(
+          flex: 3,
+          child: UserInfo(),
+        ),
+        //Places Sectin
+        Flexible(
+          flex: 13,
+          child: LastCoordinat(),
+        ),
+        //Acc Chart Section
+        Flexible(
+          flex: 11,
+          child: NearPlace(),
+        ),
+        Flexible(
+          flex: 5,
+          child: AdminButton(),
+        ),
       ],
     );
   }
