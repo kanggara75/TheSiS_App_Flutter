@@ -1,10 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:thesis_app/models/User.dart';
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/views/admin/index.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/admin/register.dart';
+import 'package:thesis_app/views/admin/adminPanel.dart';
 
 class AdminHomeScreen extends StatelessWidget {
   static String routeName = '/adminpage';
@@ -211,5 +214,38 @@ abstract class RegisterController extends State<Register> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
+  }
+}
+
+abstract class UserManagerController extends State<UserManager> {
+  var users = new List<User>();
+  bool show, admin = false;
+  Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUsers();
+    show = false;
+    timer = new Timer.periodic(
+      new Duration(seconds: 10),
+      (t) => _getUsers(),
+    );
+  }
+
+  dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  _getUsers() {
+    UserGetAPI.getUsers().then((response) {
+      setState(() {
+        Iterable list = json.decode(response.body);
+        users = list.map((model) => User.fromJson(model)).toList();
+        show = users.length > 0 ? true : false;
+        // admin = users.contains(role) == 0 ? true : false;
+      });
+    });
   }
 }
