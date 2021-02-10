@@ -118,8 +118,6 @@ abstract class NearPlaceController extends State<NearPlace> {
     String postalCode = placeMark.postalCode;
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
-
-    print(address);
     setState(() {
       p0 = address;
     });
@@ -137,8 +135,6 @@ abstract class NearPlaceController extends State<NearPlace> {
     String postalCode = placeMark.postalCode;
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
-
-    print(address);
     setState(() {
       p1 = address;
     });
@@ -156,8 +152,6 @@ abstract class NearPlaceController extends State<NearPlace> {
     String postalCode = placeMark.postalCode;
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
-
-    print(address);
     setState(() {
       p2 = address;
     });
@@ -176,7 +170,6 @@ abstract class NearPlaceController extends State<NearPlace> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p3 = address;
     });
@@ -226,11 +219,10 @@ abstract class DistanceController extends State<MapDistance> {
         getDistanceFromLatLonInKm(lat, lon, lat0, lon0);
 
         e = d <= 1 ? (d * 1000) : d;
-        print(e);
+
         distance = e.toStringAsFixed(2);
 
         sign = d <= 1 ? 'Meters' : 'Km';
-        print(sign);
       },
     );
   }
@@ -399,7 +391,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p0 = address;
     });
@@ -418,7 +409,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p1 = address;
     });
@@ -437,7 +427,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p2 = address;
     });
@@ -456,7 +445,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p3 = address;
     });
@@ -475,7 +463,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p4 = address;
     });
@@ -494,7 +481,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p5 = address;
     });
@@ -513,7 +499,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p6 = address;
     });
@@ -532,7 +517,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p7 = address;
     });
@@ -551,7 +535,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p8 = address;
     });
@@ -570,7 +553,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p9 = address;
     });
@@ -589,7 +571,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p10 = address;
     });
@@ -608,7 +589,6 @@ abstract class Near10PlaceController extends State<Near10Place> {
     String address =
         "$name, $subLocality, $locality, $administrativeArea, $postalCode";
 
-    print(address);
     setState(() {
       p11 = address;
     });

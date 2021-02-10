@@ -64,7 +64,6 @@ abstract class ChartController extends State<ChartBody> {
     setState(() {
       dataAcc = json.decode(response.body);
       isShowingMainData = true;
-      print(dataAcc.toList());
     });
   }
 
