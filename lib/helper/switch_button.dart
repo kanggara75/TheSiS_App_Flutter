@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class SwitchButton extends StatelessWidget {
   const SwitchButton({
     Key key,
-    this.text,
     this.press,
     this.icon,
     this.color,
@@ -11,7 +10,6 @@ class SwitchButton extends StatelessWidget {
     this.right,
     this.duration,
   }) : super(key: key);
-  final String text;
   final Function press;
   final Color color;
   final Icon icon;
