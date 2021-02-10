@@ -53,8 +53,8 @@ OutlineInputBorder outlineInputBorder() {
 }
 
 class BaseUrl {
-  static String baseUrl = "http://200.0.0.2/thesis/";
-  // static String baseUrl = "https://thesis.kanggara.net/";
+  // static String baseUrl = "http://200.0.0.2/thesis/";
+  static String baseUrl = "https://thesis.kanggara.net/";
   // static String baseUrl = "http://192.168.43.15/thesis/";
   static String acc = baseUrl + "api/acc";
   static String user = baseUrl + "api/user";
