@@ -93,7 +93,7 @@ abstract class RegisterController extends State<Register> {
   TextFormField usernameField() {
     return TextFormField(
       controller: user,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.name,
       onChanged: (value) {
         if (value.isNotEmpty) {
           umsg = '';
@@ -149,7 +149,7 @@ abstract class RegisterController extends State<Register> {
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        hintText: "Username",
+        hintText: "E-Mail",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: IconButton(
           padding: EdgeInsets.symmetric(
