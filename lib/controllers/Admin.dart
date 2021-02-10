@@ -245,27 +245,22 @@ abstract class UserManagerController extends State<UserManager> {
         Iterable list = json.decode(response.body);
         users = list.map((model) => User.fromJson(model)).toList();
         show = users.length > 0 ? true : false;
-        // admin = users.contains(role) == 0 ? true : false;
       });
     });
   }
 }
 
 abstract class UpdateUserController extends State<UpdateUser> {
-  var msg;
+  String msg = '', emsg, umsg;
+  bool roleS = false, statusS = false;
+  bool isLoading = false, fail = false;
+
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController role = TextEditingController();
   final TextEditingController status = TextEditingController();
   final TextEditingController id = TextEditingController();
   final TextEditingController uid = TextEditingController();
-  bool isLoading = false;
-
-  FocusNode emailNode = FocusNode();
-  FocusNode roleNode = FocusNode();
-  FocusNode statusNode = FocusNode();
-
-  final snackbarKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -273,11 +268,34 @@ abstract class UpdateUserController extends State<UpdateUser> {
       id.text = widget.id.toString();
       name.text = widget.name;
       email.text = widget.email;
-      role.text = widget.role.toString();
-      status.text = widget.status.toString();
       uid.text = "AdminTheSiS";
+
+      //Cek Kondisi
+      roleS = widget.role == 1 ? true : false;
+      statusS = widget.status == 1 ? true : false;
     }
     super.initState();
+  }
+
+  cek() {
+    status.text = statusS ? "1" : "0";
+    role.text = roleS ? "1" : "2";
+
+    if (umsg != null) {
+      setState(() {
+        fail = true;
+        msg = umsg + '\n';
+      });
+    } else if (emsg != null) {
+      setState(() {
+        fail = true;
+        msg = emsg + '\n';
+      });
+    } else if (emsg == null && umsg == null) {
+      setState(() {
+        update();
+      });
+    }
   }
 
   // ignore: missing_return
@@ -291,73 +309,95 @@ abstract class UpdateUserController extends State<UpdateUser> {
       "status": status.text,
     });
     final data = json.decode(response.body);
-    print(data);
+    var pesan = data['msg'];
+    if (data.length == 0) {
+      setState(() {
+        msg = "Unknown Error";
+      });
+    } else {
+      setState(() {
+        fail = false;
+        msg = '$pesan\n';
+      });
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        setState(() {
+          msg = '';
+        });
+      });
+    }
   }
 
-  TextField nameField() {
-    return TextField(
+  //Config for Username section
+  TextFormField nameField() {
+    return TextFormField(
       controller: name,
+      keyboardType: TextInputType.name,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          umsg = null;
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          umsg = kUserUpdateNullError;
+        }
+        return null;
+      },
       decoration: InputDecoration(
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.pinkAccent,
+        fillColor: Colors.white,
+        filled: true,
+        hintText: "Full Name",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: IconButton(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20),
+          ),
+          iconSize: SizeConfig.screenHeight * 0.04,
+          onPressed: () {},
+          icon: Icon(
+            Icons.person,
           ),
         ),
-        hintText: 'Nama Lengkap',
       ),
-      onSubmitted: (_) {
-        FocusScope.of(context).requestFocus(emailNode);
-      },
     );
   }
 
-  TextField emailField() {
-    return TextField(
+  TextFormField emailField() {
+    return TextFormField(
       controller: email,
-      focusNode: emailNode,
-      decoration: InputDecoration(
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.pinkAccent,
-          ),
-        ),
-        hintText: 'E-Mail',
-      ),
-      onSubmitted: (_) {
-        FocusScope.of(context).requestFocus(roleNode);
+      keyboardType: TextInputType.emailAddress,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          emsg = null;
+        } else if (emailValidatorRegExp.hasMatch(value)) {
+          emsg = null;
+        }
+        return null;
       },
-    );
-  }
-
-  TextField roleField() {
-    return TextField(
-      controller: role,
-      focusNode: roleNode,
-      decoration: InputDecoration(
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.pinkAccent,
-          ),
-        ),
-        hintText: 'Role',
-      ),
-      onSubmitted: (_) {
-        FocusScope.of(context).requestFocus(statusNode);
+      validator: (value) {
+        if (value.isEmpty) {
+          emsg = kEmailNullError;
+        } else if (!emailValidatorRegExp.hasMatch(value)) {
+          emsg = kInvalidEmailError;
+        }
+        return null;
       },
-    );
-  }
-
-  TextField statusField() {
-    return TextField(
-      controller: status,
-      focusNode: statusNode,
       decoration: InputDecoration(
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.pinkAccent,
+        fillColor: Colors.white,
+        filled: true,
+        hintText: "E-Mail",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: IconButton(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20),
+          ),
+          iconSize: SizeConfig.screenHeight * 0.04,
+          onPressed: () {},
+          icon: Icon(
+            Icons.mail,
           ),
         ),
-        hintText: 'Status',
       ),
     );
   }
