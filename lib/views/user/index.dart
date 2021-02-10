@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/views/map/near.dart';
-import 'package:thesis_app/controllers/User.dart';
 import 'package:thesis_app/views/user/button.dart';
 import 'package:thesis_app/views/map/lastCoor.dart';
 import 'package:thesis_app/views/dashboard/title.dart';
