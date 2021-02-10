@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/controllers/Admin.dart';
+import 'package:thesis_app/views/admin/update.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/admin/register.dart';
 
@@ -64,32 +65,47 @@ class _UserManagerState extends UserManagerController {
                 itemCount: users.length,
                 itemBuilder: (context, i) {
                   admin = users[i].role == 1 ? true : false;
-                  return Card(
-                    elevation: 8,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.white70,
-                        foregroundColor: Colors.black,
-                        backgroundImage:
-                            NetworkImage(BaseUrl.profileImage + users[i].image),
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => UpdateUser(
+                            id: users[i].id,
+                            name: users[i].name,
+                            role: users[i].role,
+                            status: users[i].status,
+                            email: users[i].email,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      elevation: 8,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.white70,
+                          foregroundColor: Colors.black,
+                          backgroundImage: NetworkImage(
+                              BaseUrl.profileImage + users[i].image),
+                        ),
+                        // isThreeLine: true,
+                        title: Text(
+                          users[i].name,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text('E-Mail: ${users[i].email}'),
+                        trailing: admin
+                            ? Icon(
+                                Icons.verified_user,
+                                color: Colors.blueAccent,
+                              )
+                            : Icon(
+                                Icons.person,
+                                color: Colors.blueGrey,
+                              ),
+                        //if (users[i].role == 1) {Text("Admin")}else{Text("Member")},
                       ),
-                      // isThreeLine: true,
-                      title: Text(
-                        users[i].name,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text('E-Mail: ${users[i].email}'),
-                      trailing: admin
-                          ? Icon(
-                              Icons.verified_user,
-                              color: Colors.blueAccent,
-                            )
-                          : Icon(
-                              Icons.person,
-                              color: Colors.blueGrey,
-                            ),
-                      //if (users[i].role == 1) {Text("Admin")}else{Text("Member")},
                     ),
                   );
                 },

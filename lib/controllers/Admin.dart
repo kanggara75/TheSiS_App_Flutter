@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:thesis_app/models/User.dart';
 import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/views/admin/index.dart';
+import 'package:thesis_app/views/admin/update.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/admin/register.dart';
 import 'package:thesis_app/views/admin/adminPanel.dart';
@@ -247,5 +248,117 @@ abstract class UserManagerController extends State<UserManager> {
         // admin = users.contains(role) == 0 ? true : false;
       });
     });
+  }
+}
+
+abstract class UpdateUserController extends State<UpdateUser> {
+  var msg;
+  final TextEditingController name = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController role = TextEditingController();
+  final TextEditingController status = TextEditingController();
+  final TextEditingController id = TextEditingController();
+  final TextEditingController uid = TextEditingController();
+  bool isLoading = false;
+
+  FocusNode emailNode = FocusNode();
+  FocusNode roleNode = FocusNode();
+  FocusNode statusNode = FocusNode();
+
+  final snackbarKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    if (widget.id != null) {
+      id.text = widget.id.toString();
+      name.text = widget.name;
+      email.text = widget.email;
+      role.text = widget.role.toString();
+      status.text = widget.status.toString();
+      uid.text = "AdminTheSiS";
+    }
+    super.initState();
+  }
+
+  // ignore: missing_return
+  Future<List> update() async {
+    final response = await http.post(BaseUrl.user, body: {
+      "id": id.text,
+      "uid": uid.text,
+      "role": role.text,
+      "name": name.text,
+      "email": email.text,
+      "status": status.text,
+    });
+    final data = json.decode(response.body);
+    print(data);
+  }
+
+  TextField nameField() {
+    return TextField(
+      controller: name,
+      decoration: InputDecoration(
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.pinkAccent,
+          ),
+        ),
+        hintText: 'Nama Lengkap',
+      ),
+      onSubmitted: (_) {
+        FocusScope.of(context).requestFocus(emailNode);
+      },
+    );
+  }
+
+  TextField emailField() {
+    return TextField(
+      controller: email,
+      focusNode: emailNode,
+      decoration: InputDecoration(
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.pinkAccent,
+          ),
+        ),
+        hintText: 'E-Mail',
+      ),
+      onSubmitted: (_) {
+        FocusScope.of(context).requestFocus(roleNode);
+      },
+    );
+  }
+
+  TextField roleField() {
+    return TextField(
+      controller: role,
+      focusNode: roleNode,
+      decoration: InputDecoration(
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.pinkAccent,
+          ),
+        ),
+        hintText: 'Role',
+      ),
+      onSubmitted: (_) {
+        FocusScope.of(context).requestFocus(statusNode);
+      },
+    );
+  }
+
+  TextField statusField() {
+    return TextField(
+      controller: status,
+      focusNode: statusNode,
+      decoration: InputDecoration(
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.pinkAccent,
+          ),
+        ),
+        hintText: 'Status',
+      ),
+    );
   }
 }
