@@ -29,6 +29,10 @@ abstract class HelpController extends State<HelpBody> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
+      "text": "Page Navigation",
+      "image": "assets/images/help3.png",
+    },
+    {
       "text": "Home Page",
       "image": "assets/images/help0.png",
     },
@@ -39,34 +43,6 @@ abstract class HelpController extends State<HelpBody> {
     {
       "text": "Map Page",
       "image": "assets/images/help2.png",
-    },
-    {
-      "text": "Page Navigation",
-      "image": "assets/images/help3.png",
-    },
-    {
-      "text": "Profile Page",
-      "image": "assets/images/help4.png",
-    },
-    {
-      "text": "Control Panel",
-      "image": "assets/images/help5.png",
-    },
-    {
-      "text": "Sensor Panel",
-      "image": "assets/images/help6.png",
-    },
-    {
-      "text": "Status Indicator",
-      "image": "assets/images/help7.png",
-    },
-    {
-      "text": "Distance Indicator",
-      "image": "assets/images/help8.png",
-    },
-    {
-      "text": "Location List",
-      "image": "assets/images/help9.png",
     },
   ];
 
