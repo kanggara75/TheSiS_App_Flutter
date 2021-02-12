@@ -55,10 +55,10 @@ class _UserManagerState extends UserManagerController {
         ? Container(
             color: Colors.black.withOpacity(0.25),
             child: Container(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(15),
                 color: Colors.lightBlueAccent,
               ),
               child: ListView.builder(
