@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'dart:typed_data';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart';
@@ -40,7 +39,9 @@ class MapCount extends StatelessWidget {
 
 abstract class MapController extends State<MapPage> {
   LocationService locationService = LocationService();
-  double lat, lon;
+  HereMapController _controller;
+  MapPolyline _mapPolyline;
+  var lat, lon, lon0, lat0;
 
   @override
   void initState() {
@@ -48,11 +49,10 @@ abstract class MapController extends State<MapPage> {
       setState(() {
         lat = userLocation.lat;
         lon = userLocation.lon;
-        savePref(lon, lat);
+        makeRequest();
       });
     });
     super.initState();
-    getPref();
   }
 
   @override
@@ -62,26 +62,17 @@ abstract class MapController extends State<MapPage> {
     super.dispose();
   }
 
-  savePref(lon, lat) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  makeRequest() async {
+    var response = await http.get(
+      BaseUrl.maplist,
+      headers: {'Accept': 'application/json'},
+    );
+    final dataMap = json.decode(response.body);
     setState(() {
-      preferences.setDouble("lon", lon);
-      preferences.setDouble("lat", lat);
+      lat0 = dataMap['0Lat'];
+      lon0 = dataMap['0Lon'];
     });
   }
-
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(
-      () {
-        lon = preferences.getDouble("lon");
-        lat = preferences.getDouble("lat");
-      },
-    );
-  }
-
-  MapPolyline _mapPolyline;
-  HereMapController _controller;
 
   void onMapCreated(HereMapController hereMapController) {
     _controller = hereMapController;
@@ -98,7 +89,7 @@ abstract class MapController extends State<MapPage> {
 
     drawRoute(
       GeoCoordinates(lat, lon),
-      GeoCoordinates(0.4705807, 101.3623994),
+      GeoCoordinates(lat0, lon0),
       hereMapController,
     );
 
@@ -106,6 +97,12 @@ abstract class MapController extends State<MapPage> {
       hereMapController,
       0,
       GeoCoordinates(lat, lon),
+    );
+
+    drawMarker0(
+      hereMapController,
+      0,
+      GeoCoordinates(lat0, lon0),
     );
 
     double distanceInMeter = 800;
@@ -117,6 +114,29 @@ abstract class MapController extends State<MapPage> {
   }
 
   Future<void> drawMarker(
+    HereMapController hereMapController,
+    int drawOrder,
+    GeoCoordinates geoCoordinates,
+  ) async {
+    ByteData fileData = await rootBundle.load(
+      "assets/icons/Location.png",
+    );
+    Uint8List pixelData = fileData.buffer.asUint8List();
+    MapImage mapImage = MapImage.withPixelDataAndImageFormat(
+      pixelData,
+      ImageFormat.png,
+    );
+    MapMarker mapMarker = MapMarker(
+      geoCoordinates,
+      mapImage,
+    );
+    mapMarker.drawOrder = drawOrder;
+    hereMapController.mapScene.addMapMarker(
+      mapMarker,
+    );
+  }
+
+  Future<void> drawMarker0(
     HereMapController hereMapController,
     int drawOrder,
     GeoCoordinates geoCoordinates,
@@ -143,6 +163,8 @@ abstract class MapController extends State<MapPage> {
     if (_mapPolyline != null) {
       _controller.mapScene.removeMapPolyline(_mapPolyline);
       _mapPolyline = null;
+    } else {
+      _controller.mapScene.addMapPolyline(_mapPolyline);
     }
   }
 
