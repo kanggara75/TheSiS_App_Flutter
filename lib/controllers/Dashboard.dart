@@ -44,7 +44,7 @@ abstract class ChartController extends State<ChartBody> {
     makeRequest();
     isShowingMainData = false;
     timer = new Timer.periodic(
-      new Duration(seconds: 30),
+      new Duration(seconds: 5),
       (t) => makeRequest(),
     );
   }
