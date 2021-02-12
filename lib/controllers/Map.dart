@@ -41,7 +41,7 @@ abstract class MapController extends State<MapPage> {
   LocationService locationService = LocationService();
   HereMapController _controller;
   MapPolyline _mapPolyline;
-  var lat, lon, lon0, lat0;
+  double lat, lon, lon0, lat0;
 
   @override
   void initState() {
@@ -49,10 +49,11 @@ abstract class MapController extends State<MapPage> {
       setState(() {
         lat = userLocation.lat;
         lon = userLocation.lon;
-        makeRequest();
+        savePref(lon, lat);
       });
     });
     super.initState();
+    getPref();
   }
 
   @override
@@ -62,15 +63,21 @@ abstract class MapController extends State<MapPage> {
     super.dispose();
   }
 
-  makeRequest() async {
-    var response = await http.get(
-      BaseUrl.maplist,
-      headers: {'Accept': 'application/json'},
-    );
-    final dataMap = json.decode(response.body);
+  savePref(lon, lat) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      lat0 = dataMap['0Lat'];
-      lon0 = dataMap['0Lon'];
+      preferences.setDouble("lon", lon);
+      preferences.setDouble("lat", lat);
+    });
+  }
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      lat = preferences.getDouble("lat");
+      lon = preferences.getDouble("lon");
+      lon0 = preferences.getDouble("lon0");
+      lat0 = preferences.getDouble("lat0");
     });
   }
 
@@ -108,7 +115,7 @@ abstract class MapController extends State<MapPage> {
     double distanceInMeter = 800;
 
     hereMapController.camera.lookAtPointWithDistance(
-      GeoCoordinates(lat, lon),
+      GeoCoordinates(lat0, lon0),
       distanceInMeter,
     );
   }

@@ -4,12 +4,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:geocoding/geocoding.dart';
-import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/map/near.dart';
 import 'package:thesis_app/config/constants.dart';
+import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/views/map/distance.dart';
 import 'package:thesis_app/views/map/fullNear.dart';
 import 'package:thesis_app/helper/location_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Near10 extends StatelessWidget {
   static String routeName = "/10Place";
@@ -184,13 +185,12 @@ abstract class DistanceController extends State<MapDistance> {
   void initState() {
     locationService.locationStream.listen((userLocation) {
       setState(() {
-        makeRequest();
         lat = userLocation.lat;
         lon = userLocation.lon;
-        ukur();
       });
     });
     super.initState();
+    getPref();
   }
 
   @override
@@ -199,27 +199,18 @@ abstract class DistanceController extends State<MapDistance> {
     super.dispose();
   }
 
-  makeRequest() async {
-    var response = await http.get(
-      BaseUrl.maplist,
-      headers: {'Accept': 'application/json'},
-    );
-    final dataMap = json.decode(response.body);
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      lat0 = dataMap['0Lat'];
-      lon0 = dataMap['0Lon'];
+      lon = preferences.getDouble("lon");
+      lat = preferences.getDouble("lat");
+      lon0 = preferences.getDouble("lon0");
+      lat0 = preferences.getDouble("lat0");
+      getDistanceFromLatLonInKm(lat, lon, lat0, lon0);
+      e = d <= 1 ? (d * 1000) : d;
+      distance = e.toStringAsFixed(2);
+      sign = d <= 1 ? 'Meters' : 'Km';
     });
-  }
-
-  ukur() {
-    setState(
-      () {
-        getDistanceFromLatLonInKm(lat, lon, lat0, lon0);
-        e = d <= 1 ? (d * 1000) : d;
-        distance = e.toStringAsFixed(2);
-        sign = d <= 1 ? 'Meters' : 'Km';
-      },
-    );
   }
 
   getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
