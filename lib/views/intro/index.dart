@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/controllers/Intro.dart';
 import 'package:thesis_app/helper/default_button.dart';
@@ -62,19 +61,6 @@ class _IntroBodyState extends IntroController {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  AnimatedContainer buildDot({int index}) {
-    return AnimatedContainer(
-      duration: kAnimationDuration,
-      margin: EdgeInsets.only(right: 5),
-      height: 6,
-      width: currentPage == index ? 20 : 6,
-      decoration: BoxDecoration(
-        color: currentPage == index ? kPrimaryColor : Color(0xFFFFFFFF),
-        borderRadius: BorderRadius.circular(3),
       ),
     );
   }
