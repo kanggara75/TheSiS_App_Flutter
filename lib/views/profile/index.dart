@@ -68,7 +68,9 @@ class _ProfileBodyState extends ProfileController {
           ProfileMenu(
             text: "Help Center",
             icon: "assets/icons/Question mark.svg",
-            press: () {},
+            press: () {
+              help();
+            },
           ),
           ProfileMenu(
             text: "Log Out",

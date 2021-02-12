@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thesis_app/config/constants.dart';
+import 'package:thesis_app/controllers/Help.dart';
 import 'package:thesis_app/controllers/Login.dart';
 import 'package:thesis_app/views/profile/index.dart';
 import 'package:thesis_app/views/profile/userInfo.dart';
@@ -31,6 +32,10 @@ abstract class ProfileController extends State<ProfileBody> {
   void initState() {
     super.initState();
     getPref();
+  }
+
+  help() {
+    Navigator.pushNamed(context, HelpScreen.routeName);
   }
 
   getPref() async {

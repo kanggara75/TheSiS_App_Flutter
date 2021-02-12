@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:thesis_app/models/Locator.dart';
 import 'package:thesis_app/controllers/Map.dart';
 import 'package:thesis_app/controllers/User.dart';
+import 'package:thesis_app/controllers/Help.dart';
 import 'package:thesis_app/controllers/Intro.dart'; //Intro
 import 'package:thesis_app/controllers/Login.dart';
 import 'package:thesis_app/controllers/Admin.dart';
@@ -19,6 +20,7 @@ final Map<String, WidgetBuilder> routes = {
   MapCount.routeName: (context) => MapCount(),
   MapScreen.routeName: (context) => MapScreen(),
   UserScreen.routeName: (context) => UserScreen(),
+  HelpScreen.routeName: (context) => HelpScreen(),
   IntroScreen.routeName: (context) => IntroScreen(), //Intro_Screen
   LoginScreen.routeName: (context) => LoginScreen(), //Login_Screen
   AdminScreen.routeName: (context) => AdminScreen(),
