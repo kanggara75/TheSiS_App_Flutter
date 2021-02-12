@@ -10,7 +10,6 @@ import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/views/map/distance.dart';
 import 'package:thesis_app/views/map/fullNear.dart';
 import 'package:thesis_app/helper/location_services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Near10 extends StatelessWidget {
   static String routeName = "/10Place";
@@ -178,20 +177,20 @@ abstract class NearPlaceController extends State<NearPlace> {
 
 abstract class DistanceController extends State<MapDistance> {
   LocationService locationService = LocationService();
-  double lat, lon, lat0, lon0;
+  var lat, lon, lat0, lon0;
   var distance, e, d, sign;
 
   @override
   void initState() {
     locationService.locationStream.listen((userLocation) {
       setState(() {
+        makeRequest();
         lat = userLocation.lat;
         lon = userLocation.lon;
-        savePref(lon, lat);
+        ukur();
       });
     });
     super.initState();
-    getPref();
   }
 
   @override
@@ -200,28 +199,24 @@ abstract class DistanceController extends State<MapDistance> {
     super.dispose();
   }
 
-  savePref(lon, lat) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  makeRequest() async {
+    var response = await http.get(
+      BaseUrl.maplist,
+      headers: {'Accept': 'application/json'},
+    );
+    final dataMap = json.decode(response.body);
     setState(() {
-      preferences.setDouble("lon", lon);
-      preferences.setDouble("lat", lat);
+      lat0 = dataMap['0Lat'];
+      lon0 = dataMap['0Lon'];
     });
   }
 
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  ukur() {
     setState(
       () {
-        lon = preferences.getDouble("lon");
-        lat = preferences.getDouble("lat");
-        lon0 = preferences.getDouble("lon0");
-        lat0 = preferences.getDouble("lat0");
         getDistanceFromLatLonInKm(lat, lon, lat0, lon0);
-
         e = d <= 1 ? (d * 1000) : d;
-
         distance = e.toStringAsFixed(2);
-
         sign = d <= 1 ? 'Meters' : 'Km';
       },
     );
