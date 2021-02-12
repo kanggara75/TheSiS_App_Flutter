@@ -3,7 +3,7 @@ import 'package:thesis_app/config/constants.dart';
 import 'package:thesis_app/config/size_config.dart';
 import 'package:thesis_app/controllers/Intro.dart';
 import 'package:thesis_app/helper/default_button.dart';
-import 'intro.dart';
+import 'package:thesis_app/helper/splash_content.dart';
 
 class IntroBody extends StatefulWidget {
   @override
