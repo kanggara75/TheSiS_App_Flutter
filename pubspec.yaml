@@ -3,9 +3,9 @@ description: TheSiS App Flutter
 homepage: https://thesis.kanggara.net
 author: KAnggara.inc
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.1
+version: 1.1.1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -50,12 +50,12 @@ flutter:
     - assets/lottie/
 
 fonts:
-    - family: Proxima
-      fonts:
-        - asset: assets/fonts/Proxima.otf
-        - asset: assets/fonts/Proxima-Italic.otf
-          style: italic
-        - asset: assets/fonts/Proxima-Bold.otf
-          weight: 700
-        - asset: assets/fonts/Proxima-Light.otf
-          weight: 300
+  - family: Proxima
+    fonts:
+      - asset: assets/fonts/Proxima.otf
+      - asset: assets/fonts/Proxima-Italic.otf
+        style: italic
+      - asset: assets/fonts/Proxima-Bold.otf
+        weight: 700
+      - asset: assets/fonts/Proxima-Light.otf
+        weight: 300
