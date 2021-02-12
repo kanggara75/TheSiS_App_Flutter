@@ -64,7 +64,9 @@ class AdminButton extends StatelessWidget {
                   FnButton(
                     text: "HW Manager",
                     color: Color.fromARGB(255, 255, 151, 218),
-                    // press: showToast,
+                    press: () {
+                      Navigator.pushNamed(context, MapList.routeName);
+                    },
                   ),
                   SizedBox(
                     width: getProportionateScreenWidth(5),
