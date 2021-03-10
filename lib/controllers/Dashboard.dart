@@ -99,8 +99,8 @@ abstract class ChartController extends State<ChartBody> {
       ),
       minX: 1,
       maxX: 51,
-      maxY: 1050,
-      minY: -1050,
+      maxY: 13,
+      minY: -13,
       lineBarsData: linesBarData1(),
     );
   }
