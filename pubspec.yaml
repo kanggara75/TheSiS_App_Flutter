@@ -17,15 +17,15 @@ dependencies:
   here_sdk:
     path: plugins/here_sdk
   flutter_svg: ^0.19.0
-  shared_preferences: ^0.5.12+4
+  shared_preferences: ^2.0.4
   curved_navigation_bar: ^0.3.7
   lottie: ^0.7.0+1
   # provider: ^4.3.2 # for State management
-  http: ^0.12.2
+  http: ^0.13.0
   # flutter_bloc: ^6.1.1
-  location: ^3.2.1
-  fl_chart: ^0.12.2
-  geocoding: ^1.0.5
+  location: ^4.1.1
+  fl_chart: ^0.12.3
+  geocoding: ^2.0.0
   fluttertoast: ^7.1.6
 
 dev_dependencies:
